@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Flower</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script defer src="admin_admin.js"></script> <!-- Link to your JavaScript file -->
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">Edit Flower</h1>
+        <form id="edit_flower_form" onsubmit="editFlower(event)">
+            <div class="form-group">
+                <label for="edit_flower_name">Flower Name</label>
+                <input type="text" id="edit_flower_name" class="form-control" placeholder="Enter flower name">
+            </div>
+    
+            <div class="form-group">
+                <label for="edit_flower_price">Price</label>
+                <input type="number" id="edit_flower_price" class="form-control" placeholder="Enter flower price">
+            </div>
+    
+            <div class="form-group">
+                <label for="edit_flower_stock">Stock</label>
+                <input type="number" id="edit_flower_stock" class="form-control" placeholder="Enter flower stock">
+            </div>
+    
+            <div class="form-group">
+                <label for="edit_flower_description">Flower Description</label>
+                <textarea id="edit_flower_description" class="form-control" rows="3" placeholder="Enter flower description" required></textarea>
+            </div>
+    
+            <div class="form-group">
+                <label for="edit_flower_image">Image</label>
+                <input type="file" id="edit_flower_image" class="form-control" placeholder="Upload image">
+                <img src="" id="preview_image" width="80" alt="Image Preview" />
+            </div>
+    
+            <div class="form-group">
+                <label for="select_category">Select Category</label>
+                <select class="form-control" id="select_category">
+                    <!-- Categories will be populated dynamically from the API -->
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Update Flower</button>
+            </div>
+            <a href="all_flowers.html" class="btn btn-secondary">Back to List</a>
+        </form>
+    </div>
+</body>
+
+</html>
