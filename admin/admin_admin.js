@@ -35,7 +35,7 @@ const fetchFlowers = () => {
       return res.json();
     })
     .then((data) => {
-      flowerTableBody.innerHTML = ""; // Clear existing rows
+      flowerTableBody.innerHTML = "";
 
       data.forEach((flower) => {
         const row = document.createElement("tr");
@@ -116,7 +116,7 @@ const deleteFlower = (id) => {
           throw new Error(`Error: ${response.status}`);
         }
         alert("Flower deleted successfully.");
-        fetchFlowers(); // Refresh the list
+        fetchFlowers();
       })
       .catch((error) => {
         console.error("Error deleting flower:", error);
@@ -126,8 +126,6 @@ const deleteFlower = (id) => {
 };
 function loadAllUsers() {
   const token = localStorage.getItem("token");
-
-  // Check if token exists; if not, redirect to login
   if (!token) {
     window.location.href = "/login.html";
     return;
@@ -191,25 +189,46 @@ const handleLogout = () => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  const orderCountApiUrl =
-    "https://flowerworld-modified.onrender.com/orders/orders/order_count/";
   const userCountApiUrl = "https://flowerworld-modified.onrender.com/user/user-count/";
 
   const flowerCountApiUrl = "https://flowerworld-modified.onrender.com/flower/count/";
 
+  const orderCountApiUrl = "https://flowerworld-modified.onrender.com/orders/orders/count/";
+
   function fetchOrderCount() {
-    fetch(orderCountApiUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        document.getElementById("total-orders-count").innerText =
-          data.total_orders;
+    const token = localStorage.getItem("token");
+    console.log("Token:", token);
+
+    fetch(orderCountApiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Unauthorized or failed to fetch order count");
+        }
+        return res.json();
       })
+      .then((data) => {
+        console.log(data);
+        const orderCountElement = document.getElementById("total-orders-count");
+        if (orderCountElement) {
+          orderCountElement.innerText = data.order_count || "0";
+          console.log("Updated order count:", data.order_count);
+        }
+      })      
       .catch((error) => {
         console.error("Error fetching order count:", error);
-        document.getElementById("total-orders-count").innerText =
-          "Error loading count";
+        const orderCountElement = document.getElementById("total-orders-count");
+        if (orderCountElement) {
+          orderCountElement.innerText = "Error loading count";
+        }
       });
   }
+
 
   function fetchUserCount() {
     fetch(userCountApiUrl)

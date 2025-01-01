@@ -1,7 +1,6 @@
 document.getElementById('addCategoryForm').addEventListener('submit', function(e){
   e.preventDefault();
   const categoryName = document.getElementById('add_category').value;
-
   const addCategoryUrl = 'https://flowerworld-modified.onrender.com/categories/';
   const token = localStorage.getItem("token");
   fetch(addCategoryUrl, {

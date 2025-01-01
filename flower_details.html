@@ -55,10 +55,6 @@
                                 </div>
                             </div>
 
-                            <div class="me-3">
-                                <i class="fas fa-search" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
-                            </div>
-
                             <a href="./login.html" class="btn btn-outline-light login-button">Login</a>
                             <a href="./register.html" class="btn btn-outline-light register-button">Register</a>
 
@@ -105,6 +101,7 @@
     <div class="container mt-5">
         <div id="flowerDetails" class="card">
             <!-- Flower details will be rendered here -->
+
         </div>
     </div>
 
@@ -220,60 +217,115 @@
                 });
         };
 
+        const cartApiUrl = "https://flowerworld-modified.onrender.com/orders/carts/";
+
+        async function handleAddToCart(flowerId) {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("You must be logged in to add items to the cart.");
+                return;
+            }
+
+            try {
+                const headers = {
+                    "Authorization": `Token ${token}`,
+                    "Content-Type": "application/json"
+                };
+                const cartResponse = await fetch(cartApiUrl, { headers });
+                if (!cartResponse.ok) {
+                    throw new Error("Failed to retrieve cart. Status: " + cartResponse.statusText);
+                }
+
+                const carts = await cartResponse.json();
+                let cart = carts.find(c => c.is_active);
+                if (!cart) {
+                    const createResponse = await fetch(cartApiUrl, {
+                        method: "POST",
+                        headers,
+                        body: JSON.stringify({})
+                    });
+
+                    if (!createResponse.ok) {
+                        throw new Error("Failed to create cart. Status: " + createResponse.statusText);
+                    }
+
+                    cart = await createResponse.json();
+                }
+                const addItemUrl = `${cartApiUrl}${cart.id}/items/`;
+                const addItemResponse = await fetch(addItemUrl, {
+                    method: "POST",
+                    headers,
+                    body: JSON.stringify({ flower_id: flowerId })
+                });
+                if (!addItemResponse.ok) {
+                    throw new Error("Failed to add item to cart. Status: " + addItemResponse.statusText);
+                }
+                alert("Item added to cart successfully.");
+            } catch (error) {
+                console.error("Error adding item to cart:", error);
+                alert("An error occurred: " + error.message);
+            }
+        }
+
+
         const renderFlowerDetails = (flower) => {
             const flowerDetailsCard = document.getElementById("flowerDetails");
-            const userToken = localStorage.getItem("token"); // Check if user is logged in
+            const userToken = localStorage.getItem("token");
 
             flowerDetailsCard.innerHTML = `
-            <div class="container p-3">
-                <div class="row g-0">
-                    <div class="col-md-6 m-auto">
-                        <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="${flower.image}">
-                            <img src="${flower.image}" class="img-fluid rounded-start" alt="${flower.flower_name}">
-                        </a>
-                    </div>
-                <div class="col-md-6 m-auto accordion-wrapper">
-                    <div class="card-body">
-                        <h4 class="card-title">Name: ${flower.flower_name}</h4>
-                        <p class="fw-bold fs-5">Category: ${flower.category ? flower.category.name : "No Category"}</p>
-                        <p class="text-dark fs-5 fw-bold">Price: $${flower.price}</p>
-                        ${userToken ?
-                    `<button class="btn border border-secondary rounded-pill px-3 buy-now-btn" data-flower-id="${flower.id}" data-flower-price="${flower.price}">
-                            <i class="fa-solid fa-cart-shopping"></i> Buy Now
-                    </button>`
-                    :
-                    `<p class="text-muted">Please <a href="./login.html">log in</a> to purchase this item.</p>`
-                }
-                        <hr class="my-4 bold-hr">
-                        <div class="accordion-container">
-                            <div class="accordion" id="shippingAccordion">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Description
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#shippingAccordion">
-                                        <div class="accordion-body">
-                                            <div class="d-flex align-items-center">
-                                                <p>${flower.description}</p>
+                <div class="container p-3">
+                    <div class="row g-0">
+                        <div class="col-md-6 m-auto">
+                            <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="${flower.image}">
+                                <img src="${flower.image}" class="img-fluid rounded-start" alt="${flower.flower_name}">
+                            </a>
+                        </div>
+                        <div class="col-md-6 m-auto accordion-wrapper">
+                            <div class="card-body">
+                                <h4 class="card-title">Name: ${flower.flower_name}</h4>
+                                <p class="fw-bold fs-5">Category: ${flower.category ? flower.category.name : "No Category"}</p>
+                                <p class="text-dark fs-5 fw-bold">Price: $${flower.price}</p>
+                                ${userToken ? 
+                                `
+                                <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
+                                            data-flower-id="${flower.id}">
+                                    <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                                </button>`
+                                : 
+                                `<p class="text-muted">Please <a href="./login.html">log in</a> to purchase this item.</p>`
+                                }
+                                <hr class="my-4 bold-hr">
+                                <div class="accordion-container">
+                                    <div class="accordion" id="shippingAccordion">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingTwo">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    Description
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#shippingAccordion">
+                                                <div class="accordion-body">
+                                                    <div class="d-flex align-items-center">
+                                                        <p>${flower.description}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Shipping & Delivery
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#shippingAccordion">
-                                        <div class="accordion-body">
-                                            <div class="d-flex align-items-center">
-                                                <p>Our delivery time is maximum 6 hours once the payment is done.<br>
-                                                All of our products are fresh and of great quality.<br>
-                                                We deliver free flowers inside Dhaka, Bangladesh.</p>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    Shipping & Delivery
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#shippingAccordion">
+                                                <div class="accordion-body">
+                                                    <div class="d-flex align-items-center">
+                                                        <p>Our delivery time is maximum 6 hours once the payment is done.<br>
+                                                        All of our products are fresh and of great quality.<br>
+                                                        We deliver free flowers inside Dhaka, Bangladesh.</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -282,51 +334,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    `;
+            `;
 
-            if (userToken) {
-                const buyNowButton = flowerDetailsCard.querySelector(".buy-now-btn");
-                if (buyNowButton) {
-                    buyNowButton.addEventListener("click", function () {
-                        const flowerId = this.getAttribute("data-flower-id");
-                        const flowerPrice = parseFloat(this.getAttribute("data-flower-price"));
-                        const quantity = 1;
-                        const userId = localStorage.getItem("user_id");
-
-                        fetch("https://flowerworld.onrender.com/orders/orders/", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                Authorization: `Token ${localStorage.getItem("token")}`,
-                            },
-                            body: JSON.stringify({
-                                flower: flowerId,
-                                user: userId,
-                                quantity: quantity,
-                                total_amount: flowerPrice * quantity,
-                            }),
-                        })
-                            .then((response) => {
-                                if (!response.ok) {
-                                    throw new Error('Network response was not ok');
-                                }
-                                return response.json();
-                            })
-                            .then((data) => {
-                                console.log("Order successfully placed:", data);
-                                alert("Order placed successfully!");
-                            })
-                            .catch((error) => {
-                                console.error("Error placing order:", error);
-                                alert("Failed to place order: " + error.message);
-                            });
-                    });
+            flowerDetailsCard.addEventListener("click", (event) => {
+                if (event.target.closest(".add-to-cart-btn")) {
+                    const flowerId = event.target.closest(".add-to-cart-btn").getAttribute("data-flower-id");
+                    handleAddToCart(flowerId);
                 }
-            }
+            });
         };
-
         if (flowerId) {
             fetchFlowerDetails(flowerId);
         } else {
