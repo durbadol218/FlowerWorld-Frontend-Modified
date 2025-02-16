@@ -43,7 +43,7 @@
                                     <div class="offcanvas-body">
                                         <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                                             <li class="nav-item me-3">
-                                                <a class="nav-link active custom-nav-link" aria-current="page"
+                                                <a class="nav-link custom-nav-link" aria-current="page"
                                                     href="index.html">Home</a>
                                             </li>
                                             <li class="nav-item me-3">
@@ -60,12 +60,14 @@
                                 </div>
     
                                 <div class="me-4">
-                                    <i class="fa-solid fa-cart-shopping" onclick="location.href='cart_page.html'"></i>
+                                    <i class="fas fa-search" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
                                 </div>
     
+                                <div class="me-4">
+                                    <i class="fa-solid fa-cart-shopping" onclick="location.href='cart_page.html'"></i>
+                                </div>
                                 <a href="./login.html" class="btn btn-outline-light login-button">Login</a>
                                 <a href="./register.html" class="btn btn-outline-light register-button">Register</a>
-    
                                 <a href="./profile.html" class="btn btn-outline-light profile-link d-none profile-button">Profile</a>
                                 <a onclick="handleLogout()" class="btn btn-outline-light logout-button d-none logout-button">Logout</a>
         
@@ -129,10 +131,8 @@
                             <div class="col-sm-12 col-lg-3 gi-footer-cat mb-4">
                                 <div class="gi-footer-widget gi-footer-company">
                                     <h1 style="color: #5CAF90;">FlowerWorld</h1>
-                                    <p class="gi-footer-detail">
-                                        Grabit is the biggest market of grocery products. Get your
-                                    daily needs from our store.
-                                    </p>
+                                    <p class="gi-footer-detail">FlowerWorld is a popular digital market of flowers. Get your
+                                        decorators and flower items from our store.</p>
                                     <div class="gi-app-store">
                                         <a href="#" class="footer-href">
                                             <img src="./image/playStore.png" class="android img-fluid" alt="android">
@@ -143,90 +143,56 @@
                                     </div>
                                 </div>
                             </div>
+    
                             <!-- Company -->
                             <div class="col-sm-12 col-lg-3 mb-4">
                                 <h4 class="gi-footer-heading">Company</h4>
                                 <hr>
                                 <ul class="list-unstyled">
-                                    <li>
-                                        <a href="about-us.html" class="footer-href">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="orders.html" class="footer-href">Delivery</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="footer-href">Legal Notice</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="footer-href">Terms & Conditions</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="footer-href">Secure payment</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html" class="footer-href">Contact us</a>
-                                    </li>
+                                    <li><a href="about-us.html" class="footer-href">About us</a></li>
+                                    <li><a href="orders.html" class="footer-href">Delivery</a></li>
+                                    <li><a href="#" class="footer-href">Legal Notice</a></li>
+                                    <li><a href="#" class="footer-href">Terms & Conditions</a></li>
+                                    <li><a href="#" class="footer-href">Secure payment</a></li>
+                                    <li><a href="contact.html" class="footer-href">Contact us</a></li>
                                 </ul>
                             </div>
+    
                             <!-- Account -->
                             <div class="col-sm-12 col-lg-3 mb-4">
                                 <h4 class="gi-footer-heading">Account</h4>
                                 <hr>
                                 <ul class="list-unstyled">
-                                    <li>
-                                        <a href="login.html" class="footer-href">Sign In</a>
-                                    </li>
-                                    <li>
-                                        <a href="register.html" class="footer-href">Sign Up</a>
-                                    </li>
-                                    <li>
-                                        <a href="orders.html" class="footer-href">View Orders</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="footer-href">Return Policy</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="footer-href">Affiliate Program</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="footer-href">Payments</a>
-                                    </li>
+                                    <li><a href="login.html" class="footer-href">Sign In</a></li>
+                                    <li><a href="register.html" class="footer-href">Sign Up</a></li>
+                                    <li><a href="orders.html" class="footer-href">View Orders</a></li>
+                                    <li><a href="#" class="footer-href">Return Policy</a></li>
+                                    <li><a href="#" class="footer-href">Affiliate Program</a></li>
+                                    <li><a href="#" class="footer-href">Payments</a></li>
                                 </ul>
                             </div>
+    
                             <div class="col-sm-12 col-lg-3 mb-4">
                                 <h4 class="gi-footer-heading">Contact</h4>
                                 <hr>
                                 <ul class="list-unstyled">
-                                    <li>
-                                        <i class="fas fa-map-marker-alt"></i> Rangpur, Dhaka, Bangladesh.
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-phone-alt"></i>
-                                        <a href="tel:+8801759381907" class="footer-href">01759381907</a>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-envelope"></i>
-                                        <a href="mailto:example@email.com" class="footer-href">example@email.com</a>
-                                    </li>
+                                    <li><i class="fas fa-map-marker-alt"></i> Rangpur, Dhaka, Bangladesh.</li>
+                                    <li><i class="fas fa-phone-alt"></i> <a href="tel:+8801759381907"
+                                            class="footer-href">01759381907</a></li>
+                                    <li><i class="fas fa-envelope"></i> <a href="mailto:example@email.com"
+                                            class="footer-href">example@email.com</a></li>
                                 </ul>
                                 <div class="gi-footer-social">
-                                    <a href="#" class="me-2 footer-href">
-                                        <i class="fab fa-facebook"></i>
-                                    </a>
-                                    <a href="#" class="me-2 footer-href">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="me-2 footer-href">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="#" class="footer-href">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
+                                    <a href="#" class="me-2 footer-href"><i class="fab fa-facebook"></i></a>
+                                    <a href="#" class="me-2 footer-href"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="me-2 footer-href"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="footer-href"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </footer>
 
