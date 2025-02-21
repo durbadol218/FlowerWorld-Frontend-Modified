@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiUrl = "https://flowerworld-modified.onrender.com/flowers/";
-    const categoryApiUrl = "https://flowerworld-modified.onrender.com/categories/";
-    const cartApiUrl = "https://flowerworld-modified.onrender.com/orders/carts/";
+    const apiUrl = "https://flower-world.vercel.app/flowers/";
+    const categoryApiUrl = "https://flower-world.vercel.app/categories/";
+    const cartApiUrl = "https://flower-world.vercel.app/orders/carts/";
     const flowerContainer = document.getElementById("flower-container");
     const categorySelect = document.getElementById("category-select");
 
@@ -131,8 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const apiUrl = "https://flowerworld-modified.onrender.com/flowers/";
-    const cartApiUrl = "https://flowerworld-modified.onrender.com/orders/carts/";
+    const apiUrl = "https://flower-world.vercel.app/flowers/";
+    const cartApiUrl = "https://flower-world.vercel.app/orders/carts/";
     const flowerContainer = document.getElementById("flower-container");
     const searchInput = document.getElementById("modal-flower-search");
     const applyFiltersButton = document.getElementById("apply-filters");
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const ordersApiUrl = "https://flowerworld-modified.onrender.com/orders/orders/";
+    const ordersApiUrl = "https://flower-world.vercel.app/orders/orders/";
     const ordersContainer = document.getElementById("orders-container");
     const userId = localStorage.getItem("user_id");
     const token = localStorage.getItem("token");
@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const showFlowerDetails = (flowerID) => {
-    fetch(`https://flowerworld-modified.onrender.com/flowers/${flowerID}/`)
+    fetch(`https://flower-world.vercel.app/flowers/${flowerID}/`)
         .then((res) => res.json())
         .then((data) => {
             viewSingleFlower(data);
@@ -381,7 +381,7 @@ const viewSingleFlower = (flower) => {
     `;
 
     if (isLoggedIn()) {
-        const cartApiUrl = "https://flowerworld-modified.onrender.com/orders/carts/";
+        const cartApiUrl = "https://flower-world.vercel.app/orders/carts/";
         async function handleAddToCart(flowerId) {
             const token = localStorage.getItem("token");
             if (!token) {

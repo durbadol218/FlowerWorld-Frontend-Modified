@@ -2,74 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
     const loginButton = document.querySelector(".login-button");
     const registerButton = document.querySelector(".register-button");
-    const profileLink = document.querySelector(".profile-link"); // Assuming a profile link if it exists
-    const logoutButton = document.querySelector(".logout-button"); // Assuming you have a logout button if needed
+    const profileLink = document.querySelector(".profile-link");
+    const logoutButton = document.querySelector(".logout-button");
 
     if (token) {
-        // User is logged in
-        if (loginButton) loginButton.classList.add("d-none"); // Hide Login button
-        if (registerButton) registerButton.classList.add("d-none"); // Hide Register button
-        if (profileLink) profileLink.classList.remove("d-none"); // Show Profile link (if applicable)
-        if (logoutButton) logoutButton.classList.remove("d-none"); // Show Logout button (if applicable)
+        if (loginButton) loginButton.classList.add("d-none");
+        if (registerButton) registerButton.classList.add("d-none");
+        if (profileLink) profileLink.classList.remove("d-none");
+        if (logoutButton) logoutButton.classList.remove("d-none");
     } else {
-        // User is not logged in
-        if (loginButton) loginButton.classList.remove("d-none"); // Show Login button
-        if (registerButton) registerButton.classList.remove("d-none"); // Show Register button
-        if (profileLink) profileLink.classList.add("d-none"); // Hide Profile link (if applicable)
-        if (logoutButton) logoutButton.classList.add("d-none"); // Hide Logout button (if applicable)
+        if (loginButton) loginButton.classList.remove("d-none");
+        if (registerButton) registerButton.classList.remove("d-none");
+        if (profileLink) profileLink.classList.add("d-none");
+        if (logoutButton) logoutButton.classList.add("d-none");
     }
 });
-
-
-
-// const handleLogin = (event) => {
-//     event.preventDefault();
-
-//     const form = document.getElementById("loginForm");
-//     const formData = new FormData(form);
-//     const loginData = {
-//         username: formData.get("username"),
-//         password: formData.get("password"),
-//     };
-//     const successAlert = document.getElementById("login-alert-success");
-//     const errorAlert = document.getElementById("login-alert-error");
-//     successAlert.classList.add("d-none");
-//     errorAlert.classList.add("d-none");
-
-//     fetch("https://flowerworld.onrender.com/user/login/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(loginData),
-//     })
-//     .then((response) => {
-//         console.log(response); // Log the response to see what's coming back
-//         if (!response.ok) {
-//             return response.json().then((data) => {
-//                 throw new Error(data.error || "Invalid username or password");
-//             });
-//         }
-//         return response.json();
-//     })
-//     .then((data) => {
-//         console.log(data); // Log the data to see what is returned from the backend
-//         if (!data.token || !data.user_id) {
-//             throw new Error("Invalid login response from server");
-//         }
-//         localStorage.setItem("token", data.token);
-//         localStorage.setItem("user_id", data.user_id);
-//         successAlert.classList.remove("d-none");
-//         setTimeout(() => {
-//             window.location.href = "index.html";
-//         }, 3000);
-//     })
-//     .catch((err) => {
-//         console.error("Login error:", err);
-//         errorAlert.classList.remove("d-none");
-//         errorAlert.innerText = err.message || "Invalid username or password. Please try again.";
-//     });
-// };
 
 
 
@@ -96,7 +43,7 @@ const handleRegister = (event) => {
 
     console.log("Register Data: ", registerData);
 
-    fetch("https://flowerworld-modified.onrender.com/user/register/", {
+    fetch("https://flower-world.vercel.app/user/register/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -145,7 +92,7 @@ const handleLogin = (event) => {
     console.log("Login Data: ", loginData);
 
     // Make the login request
-    fetch("https://flowerworld-modified.onrender.com/user/login/", {
+    fetch("https://flower-world.vercel.app/user/login/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -170,7 +117,7 @@ const handleLogin = (event) => {
         localStorage.setItem("user_id", data.user_id);
 
         // Fetch user data to determine user type
-        return fetch(`https://flowerworld-modified.onrender.com/user/accounts/${data.user_id}/`, {
+        return fetch(`https://flower-world.vercel.app/user/accounts/${data.user_id}/`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${data.token}`,
@@ -209,7 +156,7 @@ const handleLogout = () => {
         console.log('No token found in localStorage');
         return;
     }
-    fetch("https://flowerworld-modified.onrender.com/user/logout/", {
+    fetch("https://flower-world.vercel.app/user/logout/", {
         method : "POST",
         headers: {
             "Content-Type": "application/json",

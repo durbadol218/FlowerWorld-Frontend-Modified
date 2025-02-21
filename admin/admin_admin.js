@@ -1,5 +1,5 @@
 const loadCategories = () => {
-  fetch("https://flowerworld-modified.onrender.com/categories/")
+  fetch("https://flower-world.vercel.app/categories/")
     .then((response) => response.json())
     .then((data) => {
       const categorySelect = document.getElementById("flower_category");
@@ -27,7 +27,7 @@ const fetchFlowers = () => {
     return;
   }
 
-  fetch("https://flowerworld-modified.onrender.com/flowers/")
+  fetch("https://flower-world.vercel.app/flowers/")
     .then((res) => {
       if (!res.ok) {
         throw new Error(`Error: ${res.status}`);
@@ -108,7 +108,7 @@ const fetchFlowers = () => {
 
 const deleteFlower = (id) => {
   if (confirm("Are you sure you want to delete this flower?")) {
-    fetch(`https://flowerworld-modified.onrender.com/flowers/${id}/`, {
+    fetch(`https://flower-world.vercel.app/flowers/${id}/`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -131,7 +131,7 @@ function loadAllUsers() {
     return;
   }
 
-  fetch("https://flowerworld-modified.onrender.com/user/users/", {
+  fetch("https://flower-world.vercel.app/user/users/", {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   })
@@ -170,7 +170,7 @@ window.onload = loadAllUsers;
 const handleLogout = () => {
   const token = localStorage.getItem("token");
 
-  fetch("https://flowerworld-modified.onrender.com/user/logout/", {
+  fetch("https://flower-world.vercel.app/user/logout/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -189,11 +189,11 @@ const handleLogout = () => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  const userCountApiUrl = "https://flowerworld-modified.onrender.com/user/user-count/";
+  const userCountApiUrl = "https://flower-world.vercel.app/user/user-count/";
 
-  const flowerCountApiUrl = "https://flowerworld-modified.onrender.com/flower/count/";
+  const flowerCountApiUrl = "https://flower-world.vercel.app/flower/count/";
 
-  const orderCountApiUrl = "https://flowerworld-modified.onrender.com/orders/orders/count/";
+  const orderCountApiUrl = "https://flower-world.vercel.app/orders/orders/count/";
 
   function fetchOrderCount() {
     const token = localStorage.getItem("token");
