@@ -25,34 +25,37 @@ document.addEventListener("DOMContentLoaded", () => {
             const url = categoryId ? `${apiUrl}category/${categoryId}/` : apiUrl;
             const response = await fetch(url);
             const flowers = await response.json();
-            flowerContainer.innerHTML = flowers.map(flower => `
-                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                    <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                            <img src="${flower.image}" class="flower-image img-fluid w-100 rounded-top" alt="${flower.flower_name}">
-                            <!-- Info icon positioned on top of the image -->
-                            <div class="position-absolute" style="top: 10px; right: 10px;">
-                                <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id})"></i>
+            console.log(flowers);
+            flowerContainer.innerHTML = flowers.map(flower => {
+                console.log(flower.image_url);
+                return `
+                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="rounded position-relative fruite-item">
+                            <div class="fruite-img">
+                                <img src="${flower.image_url}" class="flower-image img-fluid w-100 rounded-top" alt="Hello World ${flower.flower_name}" onerror="this.src='fallback-image.jpg'">
+                                <!-- Info icon positioned on top of the image -->
+                                <div class="position-absolute" style="top: 10px; right: 10px;">
+                                    <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id})"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
-                            ${flower.category?.name || "No Category"}
-                        </div>
-                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                            <h4>${flower.flower_name}</h4>
-                            <p>${flower.description.slice(0, 100)}</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}</p>
-                                <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
-                                        data-flower-id="${flower.id}">
-                                    <i class="fa-solid fa-cart-shopping"></i> Add to Cart
-                                </button>
+                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                                ${flower.category?.name || "No Category"}
+                            </div>
+                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                <h4>${flower.flower_name}</h4>
+                                <p>${flower.description.slice(0, 100)}</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}</p>
+                                    <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
+                                            data-flower-id="${flower.id}">
+                                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `).join("");
-            
+                `;
+            }).join("");
             attachAddToCartListeners();
         } catch (error) {
             console.error("Error fetching flowers:", error);
@@ -148,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                     <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
-                            <img src="${flower.image}" class="flower-image img-fluid w-100 rounded-top" alt="${flower.flower_name}">
+                            <img src="${flower.image_url}" class="flower-image img-fluid w-100 rounded-top" alt="Hello World! ${flower.flower_name}">
                             <div class="position-absolute" style="top: 10px; right: 10px;">
                                 <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id})"></i>
                             </div>
@@ -354,7 +357,7 @@ const viewSingleFlower = (flower) => {
         <button type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="row g-0">
             <div class="col-md-4 d-flex justify-content-center align-items-center bg-light rounded-start">
-                <img src="${flower.image}" class="img-fluid rounded-3" alt="${flower.flower_name}" style="height: 150px; width:400px;">
+                <img src="${flower.image_url}" class="img-fluid rounded-3" alt="${flower.flower_name}" style="height: 150px; width:400px;">
             </div>
             <div class="col-md-8">
                 <div class="card-body p-4">

@@ -168,11 +168,9 @@ const handleLogout = () => {
         console.log('Logout response:',data);
         localStorage.removeItem("token")
         localStorage.removeItem("user_id")
-
         window.location.href ="index.html"
     })
     .catch((err)=> console.log("logout error:: ",err))
-
 }
 
 

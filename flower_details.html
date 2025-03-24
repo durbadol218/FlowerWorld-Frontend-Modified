@@ -211,7 +211,7 @@
         const flowerId = getQueryParams().flowerId;
 
         const fetchFlowerDetails = (flowerId) => {
-            fetch(`https://flowerworld-modified.onrender.com/flowers/${flowerId}/`)
+            fetch(`https://flower-world.vercel.app/flowers/${flowerId}/`)
                 .then(response => response.json())
                 .then(data => {
                     renderFlowerDetails(data);
@@ -221,7 +221,7 @@
                 });
         };
 
-        const cartApiUrl = "https://flowerworld-modified.onrender.com/orders/carts/";
+        const cartApiUrl = "https://flower-world.vercel.app/orders/carts/";
 
         async function handleAddToCart(flowerId) {
             const token = localStorage.getItem("token");
