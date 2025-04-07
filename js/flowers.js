@@ -180,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     async function handleAddToCart(flowerId) {
         const token = localStorage.getItem("token");
+        console.log(token);
         if (!token) {
             alert("You must be logged in to add items to the cart.");
             return;
