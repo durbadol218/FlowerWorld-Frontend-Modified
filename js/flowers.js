@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(categoryApiUrl);
             const categories = await response.json();
-            categories.forEach(category => {
+            categories.forEach((category) => {
                 const option = document.createElement("option");
                 option.value = category.id;
                 option.textContent = category.name;
@@ -26,16 +26,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch(url);
             const flowers = await response.json();
             console.log(flowers);
-            flowerContainer.innerHTML = flowers.map(flower => {
-                console.log(flower.image_url);
-                return `
+            flowerContainer.innerHTML = flowers
+                .map((flower) => {
+                    console.log(flower.image_url);
+                    return `
                     <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                         <div class="rounded position-relative fruite-item">
                             <div class="fruite-img">
-                                <img src="${flower.image_url}" class="flower-image img-fluid w-100 rounded-top" alt="Hello World ${flower.flower_name}" onerror="this.src='fallback-image.jpg'">
+                                <img src="${flower.image_url
+                        }" class="flower-image img-fluid w-100 rounded-top" alt="Hello World ${flower.flower_name
+                        }" onerror="this.src='fallback-image.jpg'">
                                 <!-- Info icon positioned on top of the image -->
                                 <div class="position-absolute" style="top: 10px; right: 10px;">
-                                    <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id})"></i>
+                                    <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id
+                        })"></i>
                                 </div>
                             </div>
                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
@@ -45,7 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <h4>${flower.flower_name}</h4>
                                 <p>${flower.description.slice(0, 100)}</p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                    <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}</p>
+                                    <p class="text-dark fs-5 fw-bold mb-0">$${flower.price
+                        }</p>
                                     <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
                                             data-flower-id="${flower.id}">
                                         <i class="fa-solid fa-cart-shopping"></i> Add to Cart
@@ -55,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                 `;
-            }).join("");
+                })
+                .join("");
             attachAddToCartListeners();
         } catch (error) {
             console.error("Error fetching flowers:", error);
@@ -70,30 +76,34 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("You must be logged in to add items to the cart.");
             return;
         }
-    
+
         try {
             const headers = {
-                "Authorization": `Token ${token}`,
-                "Content-Type": "application/json"
+                Authorization: `Token ${token}`,
+                "Content-Type": "application/json",
             };
-    
+
             const cartResponse = await fetch(cartApiUrl, { headers });
-    
+
             if (!cartResponse.ok) {
-                throw new Error("Failed to retrieve cart. Status: " + cartResponse.statusText);
+                throw new Error(
+                    "Failed to retrieve cart. Status: " + cartResponse.statusText
+                );
             }
-    
+
             const carts = await cartResponse.json();
-            let cart = carts.find(c => c.is_active);
-    
+            let cart = carts.find((c) => c.is_active);
+
             if (!cart) {
                 const createResponse = await fetch(cartApiUrl, {
                     method: "POST",
                     headers,
-                    body: JSON.stringify({})
+                    body: JSON.stringify({}),
                 });
                 if (!createResponse.ok) {
-                    throw new Error("Failed to create cart. Status: " + createResponse.statusText);
+                    throw new Error(
+                        "Failed to create cart. Status: " + createResponse.statusText
+                    );
                 }
 
                 cart = await createResponse.json();
@@ -102,24 +112,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const addItemResponse = await fetch(addItemUrl, {
                 method: "POST",
                 headers,
-                body: JSON.stringify({ flower_id: flowerId })
+                body: JSON.stringify({ flower_id: flowerId }),
             });
-    
+
             if (!addItemResponse.ok) {
-                throw new Error("Failed to add item to cart. Status: " + addItemResponse.statusText);
+                throw new Error(
+                    "Failed to add item to cart. Status: " + addItemResponse.statusText
+                );
             }
-    
+
             alert("Item added to cart successfully.");
         } catch (error) {
             console.error("Error adding item to cart:", error);
             alert("An error occurred: " + error.message);
         }
     }
-    
 
     function attachAddToCartListeners() {
-        document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-            button.addEventListener("click", event => {
+        document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+            button.addEventListener("click", (event) => {
                 const flowerId = button.getAttribute("data-flower-id");
                 handleAddToCart(flowerId);
             });
@@ -132,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadFlowers();
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const apiUrl = "https://flower-world.vercel.app/flowers/";
     const cartApiUrl = "https://flower-world.vercel.app/orders/carts/";
@@ -144,35 +154,43 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(apiUrl);
             const flowers = await response.json();
-            const filteredFlowers = flowers.filter(flower =>
+            const filteredFlowers = flowers.filter((flower) =>
                 flower.flower_name.toLowerCase().includes(searchTerm.toLowerCase())
             );
-            flowerContainer.innerHTML = filteredFlowers.map(flower => `
+            flowerContainer.innerHTML = filteredFlowers
+                .map(
+                    (flower) => `
                 <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                    <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                            <img src="${flower.image_url}" class="flower-image img-fluid w-100 rounded-top" alt="Hello World! ${flower.flower_name}">
-                            <div class="position-absolute" style="top: 10px; right: 10px;">
-                                <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id})"></i>
-                            </div>
-                        </div>
-                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
-                            ${flower.category?.name || "No Category"}
-                        </div>
-                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                            <h4>${flower.flower_name}</h4>
-                            <p>${flower.description.slice(0, 100)}...</p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}</p>
-                                <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
-                                        data-flower-id="${flower.id}">
-                                    <i class="fa-solid fa-cart-shopping"></i> Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join("");
+    <div class="rounded position-relative fruite-item d-flex flex-column">
+        <div class="fruite-img position-relative">
+            <img src="${flower.image_url
+                        }" class="flower-image img-fluid w-100 rounded-top" alt="Hello World! ${flower.flower_name
+                        }">
+            <div class="position-absolute" style="top: 10px; right: 10px;">
+                
+            </div>
+        </div>
+        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+            ${flower.category?.name || "No Category"}
+        </div>
+
+        <div class="p-4 border border-secondary border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
+            <h4>${flower.flower_name}</h4>
+            <p class="flex-grow-1">${flower.description.slice(0, 100)}...</p>
+
+            <!-- Pushes this to the bottom of card -->
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+                <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}</p>
+                <button class="btn btn-sm px-4 py-2 more-info-btn" onclick="location.href='flower_details.html?flowerId=${flower.id
+                        }'">More Info</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+            `
+                )
+                .join("");
             attachAddToCartListeners();
         } catch (error) {
             console.error("Error fetching flowers:", error);
@@ -185,27 +203,31 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("You must be logged in to add items to the cart.");
             return;
         }
-    
+
         try {
             const headers = {
-                "Authorization": `Token ${token}`,
-                "Content-Type": "application/json"
+                Authorization: `Token ${token}`,
+                "Content-Type": "application/json",
             };
-    
+
             const cartResponse = await fetch(cartApiUrl, { headers });
             if (!cartResponse.ok) {
-                throw new Error("Failed to retrieve cart. Status: " + cartResponse.statusText);
+                throw new Error(
+                    "Failed to retrieve cart. Status: " + cartResponse.statusText
+                );
             }
             const carts = await cartResponse.json();
-            let cart = carts.find(c => c.is_active);
+            let cart = carts.find((c) => c.is_active);
             if (!cart) {
                 const createResponse = await fetch(cartApiUrl, {
                     method: "POST",
                     headers,
-                    body: JSON.stringify({})
+                    body: JSON.stringify({}),
                 });
                 if (!createResponse.ok) {
-                    throw new Error("Failed to create cart. Status: " + createResponse.statusText);
+                    throw new Error(
+                        "Failed to create cart. Status: " + createResponse.statusText
+                    );
                 }
                 cart = await createResponse.json();
             }
@@ -213,10 +235,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const addItemResponse = await fetch(addItemUrl, {
                 method: "POST",
                 headers,
-                body: JSON.stringify({ flower_id: flowerId })
+                body: JSON.stringify({ flower_id: flowerId }),
             });
             if (!addItemResponse.ok) {
-                throw new Error("Failed to add item to cart. Status: " + addItemResponse.statusText);
+                throw new Error(
+                    "Failed to add item to cart. Status: " + addItemResponse.statusText
+                );
             }
             alert("Item added to cart successfully.");
         } catch (error) {
@@ -226,8 +250,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function attachAddToCartListeners() {
-        document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-            button.addEventListener("click", event => {
+        document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+            button.addEventListener("click", (event) => {
                 const flowerId = button.getAttribute("data-flower-id");
                 handleAddToCart(flowerId);
             });
@@ -239,9 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     loadFlowers();
 });
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const ordersApiUrl = "https://flower-world.vercel.app/orders/orders/";
@@ -306,8 +327,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     user_orders.forEach((order) => {
                         const items = order.items
-                        .map((item) => `${item.flower_name} (${item.quantity})`)
-                        .join(", ");
+                            .map((item) => `${item.flower_name} (${item.quantity})`)
+                            .join(", ");
                         const orderRow = `
                         <tr>
                             <td>${order.id}</td>
@@ -334,7 +355,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadOrders();
 });
 
-
 const showFlowerDetails = (flowerID) => {
     fetch(`https://flower-world.vercel.app/flowers/${flowerID}/`)
         .then((res) => res.json())
@@ -348,9 +368,12 @@ const showFlowerDetails = (flowerID) => {
 
 const viewSingleFlower = (flower) => {
     const modalBody = document.getElementById("singleFlowerbody");
-    
+
     function isLoggedIn() {
-        return localStorage.getItem("token") !== null && localStorage.getItem("user_id") !== null;
+        return (
+            localStorage.getItem("token") !== null &&
+            localStorage.getItem("user_id") !== null
+        );
     }
 
     modalBody.innerHTML = `
@@ -358,25 +381,37 @@ const viewSingleFlower = (flower) => {
         <button type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="row g-0">
             <div class="col-md-4 d-flex justify-content-center align-items-center bg-light rounded-start">
-                <img src="${flower.image_url}" class="img-fluid rounded-3" alt="${flower.flower_name}" style="height: 150px; width:400px;">
+                <img src="${flower.image_url
+        }" class="img-fluid rounded-3" alt="${flower.flower_name
+        }" style="height: 150px; width:400px;">
             </div>
             <div class="col-md-8">
                 <div class="card-body p-4">
-                    <h4 class="card-title text-primary mb-3">${flower.flower_name}</h4>
+                    <h4 class="card-title text-primary mb-3">${flower.flower_name
+        }</h4>
                     <p class="card-text mb-2">
-                        <span class="badge bg-success text-white fs-5">$${flower.price}</span>
+                        <span class="badge bg-success text-white fs-5">$${flower.price
+        }</span>
                     </p>
                     <p class="card-text mb-2">
-                        <span class="badge bg-secondary">${flower.category ? flower.category.name : "No Category"}</span>
+                        <span class="badge bg-secondary">${flower.category ? flower.category.name : "No Category"
+        }</span>
                     </p>
-                    <p class="text-muted mb-4"><strong>Description:</strong> ${flower.description.slice(0, 180)}...</p>
+                    <p class="text-muted mb-4"><strong>Description:</strong> ${flower.description.slice(
+            0,
+            180
+        )}...</p>
                     <div class="d-flex justify-content-between">
-                        ${isLoggedIn() ? `
+                        ${isLoggedIn()
+            ? `
                         <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
                                 data-flower-id="${flower.id}">
                             <i class="fa-solid fa-cart-shopping"></i> Add to Cart
-                        </button>` : `<p class="text-muted">Log in to purchase</p>`}
-                        <button class="btn btn-outline-info btn-sm px-4 py-2" onclick="location.href='flower_details.html?flowerId=${flower.id}'">More Info</button>
+                        </button>`
+            : `<p class="text-muted">Log in to purchase</p>`
+        }
+                        <button class="btn btn-outline-info btn-sm px-4 py-2" onclick="location.href='flower_details.html?flowerId=${flower.id
+        }'">More Info</button>
                     </div>
                 </div>
             </div>
@@ -394,23 +429,27 @@ const viewSingleFlower = (flower) => {
             }
             try {
                 const headers = {
-                    "Authorization": `Token ${token}`,
-                    "Content-Type": "application/json"
+                    Authorization: `Token ${token}`,
+                    "Content-Type": "application/json",
                 };
                 const cartResponse = await fetch(cartApiUrl, { headers });
                 if (!cartResponse.ok) {
-                    throw new Error("Failed to retrieve cart. Status: " + cartResponse.statusText);
+                    throw new Error(
+                        "Failed to retrieve cart. Status: " + cartResponse.statusText
+                    );
                 }
                 const carts = await cartResponse.json();
-                let cart = carts.find(c => c.is_active);
+                let cart = carts.find((c) => c.is_active);
                 if (!cart) {
                     const createResponse = await fetch(cartApiUrl, {
                         method: "POST",
                         headers,
-                        body: JSON.stringify({})
+                        body: JSON.stringify({}),
                     });
                     if (!createResponse.ok) {
-                        throw new Error("Failed to create cart. Status: " + createResponse.statusText);
+                        throw new Error(
+                            "Failed to create cart. Status: " + createResponse.statusText
+                        );
                     }
                     cart = await createResponse.json();
                 }
@@ -418,10 +457,12 @@ const viewSingleFlower = (flower) => {
                 const addItemResponse = await fetch(addItemUrl, {
                     method: "POST",
                     headers,
-                    body: JSON.stringify({ flower_id: flowerId })
+                    body: JSON.stringify({ flower_id: flowerId }),
                 });
                 if (!addItemResponse.ok) {
-                    throw new Error("Failed to add item to cart. Status: " + addItemResponse.statusText);
+                    throw new Error(
+                        "Failed to add item to cart. Status: " + addItemResponse.statusText
+                    );
                 }
                 alert("Item added to cart successfully.");
             } catch (error) {
@@ -432,12 +473,15 @@ const viewSingleFlower = (flower) => {
 
         modalBody.addEventListener("click", (event) => {
             if (event.target.closest(".add-to-cart-btn")) {
-                const flowerId = event.target.closest(".add-to-cart-btn").getAttribute("data-flower-id");
+                const flowerId = event.target
+                    .closest(".add-to-cart-btn")
+                    .getAttribute("data-flower-id");
                 handleAddToCart(flowerId);
             }
         });
     }
-    const flowerDetailsModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+    const flowerDetailsModal = new bootstrap.Modal(
+        document.getElementById("exampleModal")
+    );
     flowerDetailsModal.show();
 };
-

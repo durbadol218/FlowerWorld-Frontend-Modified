@@ -48,7 +48,8 @@
                                             <a class="nav-link custom-nav-link" href="./contact.html">Contact Us</a>
                                         </li>
                                         <li class="nav-item me-3">
-                                            <a class="nav-link custom-nav-link" id="seeOrdersNav" href="./orders.html">See Orders</a>
+                                            <a class="nav-link custom-nav-link" id="seeOrdersNav"
+                                                href="./orders.html">See Orders</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -63,9 +64,11 @@
                             </div>
                             <a href="./login.html" class="btn btn-outline-light login-button">Login</a>
                             <a href="./register.html" class="btn btn-outline-light register-button">Register</a>
-                            <a href="./profile.html" class="btn btn-outline-light profile-link d-none profile-button">Profile</a>
-                            <a onclick="handleLogout()" class="btn btn-outline-light logout-button d-none logout-button">Logout</a>
-    
+                            <a href="./profile.html"
+                                class="btn btn-outline-light profile-link d-none profile-button">Profile</a>
+                            <a onclick="handleLogout()"
+                                class="btn btn-outline-light logout-button d-none logout-button">Logout</a>
+
                             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                                 <span class="navbar-toggler-icon"></span>
@@ -76,7 +79,7 @@
             </div>
         </div>
     </header>
-    
+
 
     <!-- Search Modal -->
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
@@ -154,7 +157,7 @@
         </a>
     </div>
 
-    
+
     <!-- <img src="https://i.ibb.co.com/XfcYXH7d/mixed-roses1.jpg" alt="Mixed Roses"> -->
     <section class="features-section">
         <div class="container">
@@ -228,27 +231,30 @@
         </div>
         <div class="row mt-5" id="flower-container">
             <!-- Flower cards will be injected here by JS -->
-            \
-            <!-- <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-            <div class="rounded position-relative fruite-item">
-                <div class="fruite-img">
-                    <img src="img" class="img-fluid w-100 rounded-top" alt="Flower Name">
-                </div>
-                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
-                    Flower Category
-                </div>
-                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                    <h4>flower_name</h4>
-                    <p>flower.description</p>
-                    <div class="d-flex justify-content-between flex-lg-wrap">
-                        <p class="text-dark fs-5 fw-bold mb-0">flower.price</p>
-                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
-                            <i class="fa-solid fa-cart-shopping text-primary"></i> Buy Now
-                        </a>
+
+            <!--<div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="rounded position-relative fruite-item d-flex flex-column">
+                        <div class="fruite-img position-relative">
+                            img src="${flower.image_url}" class="flower-image img-fluid w-100 rounded-top" alt="Hello World! ${flower.flower_name}">
+                            <div class="position-absolute" style="top: 10px; right: 10px;">
+                                <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id})"></i>
+                            </div>
+                        </div>
+                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                                ${flower.category?.name || "No Category"}
+                        </div>
+
+                        <div class="p-4 border border-secondary border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
+                            <h4>${flower.flower_name}</h4>
+                            <p class="flex-grow-1">${flower.description.slice(0, 100)}...</p>
+
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}</p>
+                                <button class="btn btn-sm px-4 py-2 more-info-btn" onclick="location.href='flower_details.html?flowerId=${flower.id}'">More Info</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div> -->
+                </div>-->
         </div>
     </div>
 
@@ -404,7 +410,7 @@
         </div>
     </div>
     <!-- Tastimonial End -->
-    
+
 
     <!-- Footer -->
     <footer class="gi-footer mt-5">

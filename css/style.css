@@ -283,7 +283,7 @@ p.text-success {
     height: 450px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -297,7 +297,7 @@ p.text-success {
     flex-grow: 1;
 }
 
-.add-to-cart-btn {
+.add-to-cart-btn,.more-info-btn {
     background-color: #5CAF90;
     color: #fff;
     padding: 5px 15px;
@@ -305,7 +305,7 @@ p.text-success {
     transition: background-color 0.3s ease;
 }
 
-.add-to-cart-btn:hover {
+.add-to-cart-btn:hover,.more-info-btn:hover {
     background-color: #439f75;
     color: #fff;
 }
