@@ -48,7 +48,8 @@
                                             <a class="nav-link custom-nav-link" href="./contact.html">Contact Us</a>
                                         </li>
                                         <li class="nav-item me-3">
-                                            <a class="nav-link custom-nav-link" id="seeOrdersNav" href="./orders.html">See Orders</a>
+                                            <a class="nav-link custom-nav-link" id="seeOrdersNav"
+                                                href="./orders.html">See Orders</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -63,9 +64,11 @@
                             </div>
                             <a href="./login.html" class="btn btn-outline-light login-button">Login</a>
                             <a href="./register.html" class="btn btn-outline-light register-button">Register</a>
-                            <a href="./profile.html" class="btn btn-outline-light profile-link d-none profile-button">Profile</a>
-                            <a onclick="handleLogout()" class="btn btn-outline-light logout-button d-none logout-button">Logout</a>
-    
+                            <a href="./profile.html"
+                                class="btn btn-outline-light profile-link d-none profile-button">Profile</a>
+                            <a onclick="handleLogout()"
+                                class="btn btn-outline-light logout-button d-none logout-button">Logout</a>
+
                             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                                 <span class="navbar-toggler-icon"></span>
@@ -289,15 +292,15 @@
                                 <h4 class="card-title">Name: ${flower.flower_name}</h4>
                                 <p class="fw-bold fs-5">Category: ${flower.category ? flower.category.name : "No Category"}</p>
                                 <p class="text-dark fs-5 fw-bold">Price: $${flower.price}</p>
-                                ${userToken ? 
-                                `
+                                ${userToken ?
+                    `
                                 <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
                                             data-flower-id="${flower.id}">
                                     <i class="fa-solid fa-cart-shopping"></i> Add to Cart
                                 </button>`
-                                : 
-                                `<p class="text-muted">Please <a href="./login.html">log in</a> to purchase this item.</p>`
-                                }
+                    :
+                    `<p class="text-muted">Please <a href="./login.html">log in</a> to purchase this item.</p>`
+                }
                                 <hr class="my-4 bold-hr">
                                 <div class="accordion-container">
                                     <div class="accordion" id="shippingAccordion">

@@ -38,8 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }" onerror="this.src='fallback-image.jpg'">
                                 <!-- Info icon positioned on top of the image -->
                                 <div class="position-absolute" style="top: 10px; right: 10px;">
-                                    <i class="fa-solid fa-circle-info fa-lg cursor-pointer" onclick="showFlowerDetails(${flower.id
-                        })"></i>
+                                    
                                 </div>
                             </div>
                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
@@ -51,10 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="text-dark fs-5 fw-bold mb-0">$${flower.price
                         }</p>
-                                    <button class="btn border border-secondary rounded-pill px-3 add-to-cart-btn" 
-                                            data-flower-id="${flower.id}">
-                                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
-                                    </button>
+                                    <button class="btn btn-sm px-4 py-2 more-info-btn" onclick="location.href='flower_details.html?flowerId=${flower.id
+                        }'">More Info</button>
                                 </div>
                             </div>
                         </div>
