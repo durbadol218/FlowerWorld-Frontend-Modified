@@ -139,6 +139,34 @@
         .navbar-brand {
             font-weight: 600;
         }
+
+        /* Loader Styles */
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #5CAF90;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -205,7 +233,7 @@
                 </a>
             </div>
         </aside>
-        <div class="container">
+        <div class="container pt-5">
             <h1 class="text-center">All Orders</h1>
             <div id="admin-orders" class="orders-container">
                 <!-- Fetched orders will be displayed here -->
@@ -217,16 +245,26 @@
 
         function fetchOrders(customerId) {
             const token = localStorage.getItem("token");
-            console.log(token);
+            const ordersContainer = document.getElementById('admin-orders');
+
+            // Show loader
+            ordersContainer.innerHTML = `
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+    `;
+
             if (!token) {
                 alert("Please login to access and view all orders");
                 window.location.href = '/login.html';
                 return;
             }
+
             let url = ordersUrl;
             if (customerId) {
                 url += `?customer_id=${customerId}`;
             }
+
             fetch(url, {
                 method: 'GET',
                 headers: {
@@ -234,59 +272,76 @@
                     'Content-Type': 'application/json',
                 },
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    if (data.length === 0) {
+                        ordersContainer.innerHTML = `
+                <div class="alert alert-info">
+                    No orders found.
+                </div>
+            `;
+                        return;
+                    }
+
                     let ordersHTML = `
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Trnx ID</th>
-                                        <th>Customer</th>
-                                        <th>Products</th>
-                                        <th>Total Amount</th>
-                                        <th>Status</th>
-                                        <th>Payment Status</th>
-                                        <th>Shipping Address</th>
-                                        <th>Placed At</th>
-                                    </tr>
-                                </thead>
-                            <tbody>
-                        `;
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Trnx ID</th>
+                        <th>Customer</th>
+                        <th>Products</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Payment Status</th>
+                        <th>Shipping Address</th>
+                        <th>Placed At</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
                     data.forEach(order => {
                         const products = order.items.map(item => `${item.flower_name} (${item.quantity})`).join(', ');
                         ordersHTML += `
-                            <tr>
-                                <td>${order.id}</td>
-                                <td>${order.transaction_id}</td>
-                                <td>${order.username || "N/A"}</td> <!-- Display the username -->
-                                <td>${products}</td> <!-- Display combined products -->
-                                <td>$${order.total_amount}</td>
-                                <td>
-                                    <select id="status-${order.id}" class="form-select" onchange="updateOrderStatus(${order.id})">
-                                        <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
-                                        <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
-                                        <option value="Failed" ${order.status === 'Failed' ? 'selected' : ''}>Failed</option>
-                                        <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
-                                    </select>
-                                </td>
-                                <td>${order.payment_status}</td>
-                                <td>${order.shipping_address}</td>
-                                <td>${new Date(order.placed_time).toLocaleString()}</td>
-                            </tr>
-                        `;
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.transaction_id}</td>
+                    <td>${order.username || "N/A"}</td>
+                    <td>${products}</td>
+                    <td>$${order.total_amount}</td>
+                    <td>
+                        <select id="status-${order.id}" class="form-select" onchange="updateOrderStatus(${order.id})">
+                            <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="Failed" ${order.status === 'Failed' ? 'selected' : ''}>Failed</option>
+                            <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </td>
+                    <td>${order.payment_status}</td>
+                    <td>${order.shipping_address}</td>
+                    <td>${new Date(order.placed_time).toLocaleString()}</td>
+                </tr>
+            `;
                     });
-                    ordersHTML += `
-                        </tbody>
-                        </table>`;
-                    document.getElementById('admin-orders').innerHTML = ordersHTML;
+
+                    ordersHTML += `</tbody></table>`;
+                    ordersContainer.innerHTML = ordersHTML;
                 })
                 .catch(error => {
                     console.error('Error fetching orders:', error);
-                    alert('Failed to fetch orders. Please try again later.');
+                    ordersContainer.innerHTML = `
+            <div class="alert alert-danger">
+                Failed to load orders. <button onclick="fetchOrders()" class="btn btn-sm btn-outline-secondary">Retry</button>
+            </div>
+        `;
                 });
         }
-
         function updateOrderStatus(orderId) {
             const newStatus = document.getElementById(`status-${orderId}`).value;
             console.log(`New status for order ${orderId}:`, newStatus);

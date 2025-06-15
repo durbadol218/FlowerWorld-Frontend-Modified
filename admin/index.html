@@ -66,15 +66,20 @@
         }
 
         #toggle-btn {
-            background-color: transparent;
-            cursor: pointer;
+            background: transparent;
             border: 0;
-            padding: 1rem;
+            padding: 1rem 1.25rem;
+            margin-right: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        #toggle-btn i {
-            font-size: 1.5rem;
+        #toggle-icon {
+            font-size: 1.25rem;
             color: #fff;
+            transition: transform 0.3s ease;
         }
 
         .sidebar-logo {
@@ -141,9 +146,14 @@
     <div class="wrapper d-flex">
         <aside id="sidebar">
             <div class="d-flex">
-                <button id="toggle-btn" type="button">
+                <!-- <button id="toggle-btn" type="button">
                     <i class="fa-solid fa-gauge"></i>
+                </button> -->
+
+                <button id="toggle-btn" type="button">
+                    <i id="toggle-icon" class="fa-solid fa-arrow-right"></i>
                 </button>
+
                 <div class="sidebar-logo">
                     <a href="#">FlowerWorld</a>
                 </div>
@@ -200,12 +210,12 @@
             </div>
         </aside>
         <div class="main p-4 bg-light">
-            <div class="text-center mb-4">
-                <h1 class="display-5 text-dark font-weight-bold">
+            <div class="text-center mb-5">
+                <h1 class="display-3 text-dark font-weight-bold">
                     Welcome to Admin Dashboard
                 </h1>
             </div>
-            <div class="container d-flex justify-content-center align-items-center vh-100">
+            <div class="container d-flex justify-content-center align-items-center mt-5">
                 <div class="row d-flex justify-content-center w-100">
                     <div class="col-md-6 mb-3">
                         <div class="card text-center shadow-lg border-success">

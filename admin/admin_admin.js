@@ -18,6 +18,94 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchFlowers();
 });
 
+// const fetchFlowers = () => {
+//   const flowerTableBody = document.getElementById("flower_table");
+//   console.log("Flower table body:", flowerTableBody);
+
+//   if (!flowerTableBody) {
+//     console.error('Element with ID "flower_table" not found');
+//     return;
+//   }
+
+//   fetch("https://flower-world.vercel.app/flowers/")
+//     .then((res) => {
+//       if (!res.ok) {
+//         throw new Error(`Error: ${res.status}`);
+//       }
+//       return res.json();
+//     })
+//     .then((data) => {
+//       flowerTableBody.innerHTML = "";
+
+//       data.forEach((flower) => {
+//         const row = document.createElement("tr");
+//         const nameCell = document.createElement("td");
+//         nameCell.textContent = flower.flower_name;
+//         nameCell.style.textAlign = "center";
+//         nameCell.style.verticalAlign = "middle";
+//         row.appendChild(nameCell);
+
+//         const priceCell = document.createElement("td");
+//         priceCell.textContent = `$${flower.price}`;
+//         priceCell.style.textAlign = "center";
+//         priceCell.style.verticalAlign = "middle";
+//         row.appendChild(priceCell);
+
+//         const quantityCell = document.createElement("td");
+//         quantityCell.textContent = flower.stock;
+//         quantityCell.style.textAlign = "center";
+//         quantityCell.style.verticalAlign = "middle";
+//         row.appendChild(quantityCell);
+
+//         const categoryCell = document.createElement("td");
+//         categoryCell.textContent = flower.category.name;
+//         categoryCell.style.textAlign = "center";
+//         categoryCell.style.verticalAlign = "middle";
+//         row.appendChild(categoryCell);
+
+//         const imageCell = document.createElement("td");
+//         const img = document.createElement("img");
+//         img.src = flower.image;
+//         img.alt = flower.flower_name;
+//         img.style.width = "100px";
+//         img.style.height = "80px";
+//         imageCell.classList.add("center-content");
+//         imageCell.appendChild(img);
+//         row.appendChild(imageCell);
+
+//         const actionsCell = document.createElement("td");
+//         const editButton = document.createElement("button");
+//         editButton.classList.add("btn", "btn-primary", "me-2");
+//         editButton.onclick = () => {
+//           window.location.href = `edit_flower.html?Id=${flower.id}`;
+//         };
+
+//         const editIcon = document.createElement("i");
+//         editIcon.classList.add("fas", "fa-edit");
+//         editButton.appendChild(editIcon);
+
+//         const deleteButton = document.createElement("button");
+//         deleteButton.classList.add("btn", "btn-danger", "ms-2");
+//         deleteButton.onclick = () => deleteFlower(flower.id);
+
+//         const deleteIcon = document.createElement("i");
+//         deleteIcon.classList.add("fas", "fa-trash");
+//         deleteButton.appendChild(deleteIcon);
+
+//         actionsCell.style.textAlign = "center";
+//         actionsCell.style.verticalAlign = "middle";
+//         actionsCell.appendChild(editButton);
+//         actionsCell.appendChild(deleteButton);
+//         row.appendChild(actionsCell);
+
+//         flowerTableBody.appendChild(row);
+//       });
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching flower data:", error);
+//     });
+// };
+
 const fetchFlowers = () => {
   const flowerTableBody = document.getElementById("flower_table");
   console.log("Flower table body:", flowerTableBody);
@@ -27,6 +115,16 @@ const fetchFlowers = () => {
     return;
   }
 
+  flowerTableBody.innerHTML = `
+    <tr>
+      <td colspan="6">
+        <div class="loader-container">
+          <div class="loader"></div>
+        </div>
+      </td>
+    </tr>
+  `;
+
   fetch("https://flower-world.vercel.app/flowers/")
     .then((res) => {
       if (!res.ok) {
@@ -35,9 +133,27 @@ const fetchFlowers = () => {
       return res.json();
     })
     .then((data) => {
-      flowerTableBody.innerHTML = "";
+      // Validate data
+      if (!data || !Array.isArray(data)) {
+        console.error("Invalid data format:", data);
+        flowerTableBody.innerHTML =
+          "<tr><td colspan='6'>No flowers found or invalid data</td></tr>";
+        return;
+      }
 
-      data.forEach((flower) => {
+      flowerTableBody.innerHTML = ""; // Clear old content
+
+      data.forEach((flower, index) => {
+        if (
+          !flower.flower_name ||
+          !flower.price ||
+          !flower.category ||
+          !flower.category.name
+        ) {
+          console.warn(`Incomplete flower data at index ${index}:`, flower);
+          return;
+        }
+
         const row = document.createElement("tr");
         const nameCell = document.createElement("td");
         nameCell.textContent = flower.flower_name;
@@ -52,7 +168,7 @@ const fetchFlowers = () => {
         row.appendChild(priceCell);
 
         const quantityCell = document.createElement("td");
-        quantityCell.textContent = flower.stock;
+        quantityCell.textContent = flower.stock ?? "0";
         quantityCell.style.textAlign = "center";
         quantityCell.style.verticalAlign = "middle";
         row.appendChild(quantityCell);
@@ -65,8 +181,10 @@ const fetchFlowers = () => {
 
         const imageCell = document.createElement("td");
         const img = document.createElement("img");
-        img.src = flower.image;
-        img.alt = flower.flower_name;
+        img.src =
+          flower.image_url ||
+          "https://via.placeholder.com/100x80?text=No+Image";
+        img.alt = flower.flower_name || "Flower";
         img.style.width = "100px";
         img.style.height = "80px";
         imageCell.classList.add("center-content");
@@ -74,6 +192,7 @@ const fetchFlowers = () => {
         row.appendChild(imageCell);
 
         const actionsCell = document.createElement("td");
+
         const editButton = document.createElement("button");
         editButton.classList.add("btn", "btn-primary", "me-2");
         editButton.onclick = () => {
@@ -81,7 +200,7 @@ const fetchFlowers = () => {
         };
 
         const editIcon = document.createElement("i");
-        editIcon.classList.add("fas","fa-edit");
+        editIcon.classList.add("fas", "fa-edit");
         editButton.appendChild(editIcon);
 
         const deleteButton = document.createElement("button");
@@ -89,7 +208,7 @@ const fetchFlowers = () => {
         deleteButton.onclick = () => deleteFlower(flower.id);
 
         const deleteIcon = document.createElement("i");
-        deleteIcon.classList.add("fas","fa-trash");
+        deleteIcon.classList.add("fas", "fa-trash");
         deleteButton.appendChild(deleteIcon);
 
         actionsCell.style.textAlign = "center";
@@ -100,9 +219,23 @@ const fetchFlowers = () => {
 
         flowerTableBody.appendChild(row);
       });
+
+      if (data.length === 0) {
+        flowerTableBody.innerHTML =
+          "<tr><td colspan='6' style='text-align:center;'>No flowers available</td></tr>";
+      }
     })
     .catch((error) => {
       console.error("Error fetching flower data:", error);
+      flowerTableBody.innerHTML = `<tr>
+          <td colspan="6" class="text-center py-4">
+            Failed to load flowers. 
+            <button onclick="fetchFlowers()" class="btn btn-sm btn-outline-secondary">
+              <i class="fas fa-sync-alt"></i> Retry
+            </button>
+            <div class="text-danger mt-2">${error.message}</div>
+          </td>
+        </tr>`;
     });
 };
 
@@ -126,6 +259,17 @@ const deleteFlower = (id) => {
 };
 function loadAllUsers() {
   const token = localStorage.getItem("token");
+  const parent = document.getElementById("user_table");
+
+  parent.innerHTML = `
+    <tr>
+            <td colspan="4">
+                <div class="loader-container">
+                    <div class="loader"></div>
+                </div>
+            </td>
+        </tr>
+  `;
   if (!token) {
     window.location.href = "/login.html";
     return;
@@ -144,25 +288,53 @@ function loadAllUsers() {
       return response.json();
     })
     .then((data) => {
-      const parent = document.getElementById("user_table");
       parent.innerHTML = "";
 
       if (data && Array.isArray(data)) {
+        if (data.length === 0) {
+          parent.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="text-center py-4">
+                            No users found in the system.
+                        </td>
+                    </tr>
+                `;
+          return;
+        }
+
         data.forEach((user, index) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td>${user.first_name}</td>
-                        <td>${user.last_name}</td>
-                        <td>${user.email}</td>
-                    `;
+                    <td>${index + 1}</td>
+                    <td>${user.first_name || "N/A"}</td>
+                    <td>${user.last_name || "N/A"}</td>
+                    <td>${user.email || "N/A"}</td>
+                `;
           parent.appendChild(row);
         });
       } else {
-        parent.innerHTML = "<tr><td colspan='5'>No users found.</td></tr>";
+        parent.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center text-danger py-4">
+                        Invalid data format received from server.
+                    </td>
+                </tr>
+            `;
       }
     })
-    .catch((error) => console.error("Fetch error:", error));
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      parent.innerHTML = `
+            <tr>
+                <td colspan="4" class="text-center text-danger py-4">
+                    Failed to load users. 
+                    <button class="btn btn-sm btn-outline-secondary ms-2" onclick="loadAllUsers()">
+                        Retry
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
 }
 
 window.onload = loadAllUsers;
@@ -193,7 +365,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const flowerCountApiUrl = "https://flower-world.vercel.app/flower/count/";
 
-  const orderCountApiUrl = "https://flower-world.vercel.app/orders/orders/count/";
+  const orderCountApiUrl =
+    "https://flower-world.vercel.app/orders/orders/count/";
 
   function fetchOrderCount() {
     const token = localStorage.getItem("token");
@@ -219,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function () {
           orderCountElement.innerText = data.order_count || "0";
           console.log("Updated order count:", data.order_count);
         }
-      })      
+      })
       .catch((error) => {
         console.error("Error fetching order count:", error);
         const orderCountElement = document.getElementById("total-orders-count");
@@ -228,7 +401,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
   }
-
 
   function fetchUserCount() {
     fetch(userCountApiUrl)
@@ -254,8 +426,10 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         console.error("Error fetching flower and category count:", error);
-        document.getElementById("total-revenue-count").innerText = "Error loading count";
-        document.getElementById("pending-orders-count").innerText = "Error loading count";
+        document.getElementById("total-revenue-count").innerText =
+          "Error loading count";
+        document.getElementById("pending-orders-count").innerText =
+          "Error loading count";
       });
   }
 
