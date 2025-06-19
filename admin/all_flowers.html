@@ -71,15 +71,21 @@
         }
 
         #toggle-btn {
-            background-color: transparent;
-            cursor: pointer;
+            background: transparent;
             border: 0;
             padding: 1rem;
+            /* margin-right: 0.5rem; */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
         }
 
-        #toggle-btn i {
-            font-size: 1.5rem;
+        #toggle-icon {
+            font-size: 1.25rem;
             color: #fff;
+            transition: transform 0.3s ease;
         }
 
         .sidebar-logo {
@@ -180,14 +186,18 @@
     <div class="wrapper d-flex">
         <aside id="sidebar">
             <div class="d-flex">
-                <button id="toggle-btn" type="button">
+                <!-- <button id="toggle-btn" type="button">
                     <i class="fa-solid fa-gauge"></i>
+                </button> -->
+
+                <button id="toggle-btn" type="button">
+                    <i id="toggle-icon" class="fa-solid fa-arrow-right"></i>
                 </button>
+
                 <div class="sidebar-logo">
                     <a href="#">FlowerWorld</a>
                 </div>
             </div>
-
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="index.html" class="sidebar-link">

@@ -51,19 +51,19 @@
         }
 
         #sidebar {
-    background-color: #5CAF90;
-    min-width: 70px;
-    z-index: 1000;
-    transition: all 0.25s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    width: 70px;
-    position: fixed;  /* Sidebar fixed */
-    height: 100vh;    /* Full height */
-    top: 0;           /* Stick to the top of the page */
-    left: 0;          /* Stick to the left of the page */
-    overflow-y: auto; /* Enable scrolling inside sidebar if necessary */
-}
+            background-color: #5CAF90;
+            min-width: 70px;
+            z-index: 1000;
+            transition: all 0.25s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            width: 70px;
+            position: fixed;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
 
         #sidebar.expand {
             width: 260px;
@@ -146,14 +146,18 @@
     <div class="wrapper d-flex">
         <aside id="sidebar">
             <div class="d-flex">
-                <button id="toggle-btn" type="button">
+                <!-- <button id="toggle-btn" type="button">
                     <i class="fa-solid fa-gauge"></i>
+                </button> -->
+
+                <button id="toggle-btn" type="button">
+                    <i id="toggle-icon" class="fa-solid fa-arrow-right"></i>
                 </button>
+
                 <div class="sidebar-logo">
                     <a href="#">FlowerWorld</a>
                 </div>
             </div>
-    
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="index.html" class="sidebar-link">
