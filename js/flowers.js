@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     flower.flower_name.toLowerCase().includes(searchTerm.toLowerCase())
                 );
             }
-            const displayedFlowers = filteredFlowers.slice(0, 10);
+            const displayedFlowers = filteredFlowers.slice(0, 8);
             if (displayedFlowers.length === 0) {
                 flowerContainer.innerHTML = `
                     <div class="col-12 text-center py-5">

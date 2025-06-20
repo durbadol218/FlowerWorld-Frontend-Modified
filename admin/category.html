@@ -211,7 +211,7 @@
                 </button>
 
                 <div class="sidebar-logo">
-                    <a href="#">FlowerWorld</a>
+                    <a href="index.html">FlowerWorld</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
@@ -219,12 +219,6 @@
                     <a href="index.html" class="sidebar-link">
                         <i class="fa-solid fa-house"></i>
                         <span>Home</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="admin_profile.html" class="sidebar-link">
-                        <i class="fa-regular fa-user"></i>
-                        <span>Profile</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -257,6 +251,12 @@
                         <span>Users</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="admin_profile.html" class="sidebar-link">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
             </ul>
             <div class="sidebar-footer">
                 <a href="#" class="sidebar-link" onclick="handleLogout()">
@@ -265,7 +265,7 @@
                 </a>
             </div>
         </aside>
-        <div class="container mt-3">
+        <div class="container my-5">
             <h1 class="text-center">Add Category</h1>
             <form id="addCategoryForm" class="p-4 align-items-center border rounded-5 p-3 bg-white shadow w-50 m-auto">
                 <div class="mb-4">
@@ -273,8 +273,10 @@
                     <input type="text" class="form-control form-control-lg" id="add_category"
                         placeholder="Enter category name" required>
                 </div>
-                <button type="submit" class="btn btn-lg w-100" style="background-color:#5CAF90;color: white;">Add
-                    Category</button>
+                <button type="submit" class="btn w-100 py-2 py-md-3 px-2 fs-6 fs-md-5"
+                    style="background-color:#5CAF90; color: white;">
+                    Add Category
+                </button>
             </form>
 
 

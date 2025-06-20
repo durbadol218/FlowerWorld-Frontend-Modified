@@ -172,6 +172,71 @@
                 transform: rotate(360deg);
             }
         }
+
+        .min-width-80 {
+            min-width: 80px;
+        }
+
+        .min-width-120 {
+            min-width: 120px;
+        }
+
+        .min-width-200 {
+            min-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .table-responsive {
+                border: 0;
+            }
+
+            .table-responsive thead {
+                display: none;
+            }
+
+            .table-responsive tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid #dee2e6;
+            }
+
+            .table-responsive td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem;
+                border-bottom: 1px solid #dee2e6;
+                text-align: right;
+            }
+
+            .table-responsive td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                margin-right: auto;
+                padding-right: 1rem;
+                text-align: left;
+            }
+
+            .table-responsive td:last-child {
+                border-bottom: 0;
+            }
+
+            td:nth-child(1):before {
+                content: "ID";
+            }
+
+            td:nth-child(2):before {
+                content: "First Name";
+            }
+
+            td:nth-child(3):before {
+                content: "Last Name";
+            }
+
+            td:nth-child(4):before {
+                content: "Email";
+            }
+        }
     </style>
 </head>
 
@@ -188,7 +253,7 @@
                 </button>
 
                 <div class="sidebar-logo">
-                    <a href="#">FlowerWorld</a>
+                    <a href="index.html">FlowerWorld</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
@@ -196,12 +261,6 @@
                     <a href="index.html" class="sidebar-link">
                         <i class="fa-solid fa-house"></i>
                         <span>Home</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="admin_profile.html" class="sidebar-link">
-                        <i class="fa-regular fa-user"></i>
-                        <span>Profile</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -234,6 +293,12 @@
                         <span>Users</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="admin_profile.html" class="sidebar-link">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
             </ul>
             <div class="sidebar-footer">
                 <a href="#" class="sidebar-link" onclick="handleLogout()">
@@ -242,21 +307,29 @@
                 </a>
             </div>
         </aside>
-        <div class="container pt-5">
-            <h1 class="text-center">All Users</h1>
-            <table class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody id="user_table">
-
-                </tbody>
-            </table>
+        <div class="container-fluid px-3 py-4" style="margin-left: 100px; margin-right: 50px;">
+            <h1 class="text-center h4 mb-4">All Users</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-center min-width-80">ID</th>
+                            <th class="min-width-120">First Name</th>
+                            <th class="min-width-120">Last Name</th>
+                            <th class="min-width-200">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user_table">
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john.doe@example.com</td>
+                        </tr>
+                        <!-- More rows will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
