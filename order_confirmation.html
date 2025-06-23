@@ -201,8 +201,8 @@
     <script>
 
         document.addEventListener("DOMContentLoaded", () => {
-            const apiUrl = "https://flower-world.vercel.app/orders/orders/";
-            const paymentApiUrl = "https://flower-world.vercel.app/api/payment/initiate/";
+            const apiUrl = "https://flowerworld-api.vercel.app/orders/orders/";
+            const paymentApiUrl = "https://flowerworld-api.vercel.app/api/payment/initiate/";
             const orderId = new URLSearchParams(window.location.search).get("order_id") || localStorage.getItem("orderId");
             console.log(orderId);
             if (!orderId) {

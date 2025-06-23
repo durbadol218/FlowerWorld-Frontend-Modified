@@ -3,7 +3,7 @@ const displayProfile = () => {
   console.log(user_id);
   const parent = document.getElementById("profile-info");
 
-  fetch(`https://flower-world.vercel.app/user/accounts/${user_id}/`)
+  fetch(`https://flowerworld-api.vercel.app/user/accounts/${user_id}/`)
     .then((res) => {
       if (!res.ok) {
         throw new Error("Failed to fetch user profile");

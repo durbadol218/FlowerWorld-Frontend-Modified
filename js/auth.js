@@ -64,7 +64,7 @@ const handleRegister = (event) => {
     .then((data) => {
       console.log("Response Data: ", data);
       successAlert.classList.remove("d-none");
-      successAlert.innerText = "Registration successful! Redirecting...";
+      successAlert.innerText = "Registration successful! Check your mail for activation link. Redirecting to login page...";
       setTimeout(() => {
         window.location.href = "login.html";
       }, 3000);

@@ -3,7 +3,7 @@
 // });
 
 // function populateCategories() {
-//     const categoriesUrl = 'https://flower-world.vercel.app/categories/';
+//     const categoriesUrl = 'https://flowerworld-api.vercel.app/categories/';
 
 //     fetch(categoriesUrl, {
 //         method: 'GET',
@@ -55,7 +55,7 @@
 //     formData.append('category', category);
 //     if (image) formData.append('image', image);
 
-//     const addFlowerUrl = 'https://flower-world.vercel.app/flowers/';
+//     const addFlowerUrl = 'https://flowerworld-api.vercel.app/flowers/';
 
 //     fetch(addFlowerUrl, {
 //         method: 'POST',
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function populateCategories() {
-    const categoriesUrl = 'https://flower-world.vercel.app/categories/';
+    const categoriesUrl = 'https://flowerworld-api.vercel.app/categories/';
     // const categoriesUrl = 'http://127.0.0.1:8000/categories/';
 
     fetch(categoriesUrl, {
@@ -176,7 +176,7 @@ function populateCategories() {
 //         image_url: imageUrl
 //     };
 
-//     const addFlowerUrl = 'https://flower-world.vercel.app/flowers/';
+//     const addFlowerUrl = 'https://flowerworld-api.vercel.app/flowers/';
 //     // const addFlowerUrl = 'http://127.0.0.1:8000/flowers/';
 
 //     fetch(addFlowerUrl, {
@@ -238,7 +238,7 @@ document.getElementById('addFlowerForm').addEventListener('submit', async functi
         }
 
         // API Request
-        const response = await fetch('https://flower-world.vercel.app/flowers/', {
+        const response = await fetch('https://flowerworld-api.vercel.app/flowers/', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,

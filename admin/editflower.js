@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error('No flower ID found in the URL');
         return;
     }
-    fetch(`https://flower-world.vercel.app/flowers/${flowerId}/`)
+    fetch(`https://flowerworld-api.vercel.app/flowers/${flowerId}/`)
         .then(res => {
             if (!res.ok) {
                 throw new Error(`Error fetching flower data: ${response.status}`);
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log('Form Data:', formData);
 
-        fetch(`https://flower-world.vercel.app/flowers/${flowerId}/`, {
+        fetch(`https://flowerworld-api.vercel.app/flowers/${flowerId}/`, {
             method: 'PATCH',
             body: formData,
         })

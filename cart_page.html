@@ -264,7 +264,7 @@
     </footer>
 
     <script>
-        const cartApiBaseUrl = "https://flower-world.vercel.app/orders/carts/";
+        const cartApiBaseUrl = "https://flowerworld-api.vercel.app/orders/carts/";
 
         async function fetchCartItems() {
             const token = localStorage.getItem("token");
@@ -321,9 +321,8 @@
                     <div class="d-flex align-items-center mb-5">
                         <div class="flex-shrink-0">
                             <img src="${item.image_url.startsWith('/')
-                    ? 'https://flower-world.vercel.app' + item.image_url
-                    : item.image_url}" 
-                                class="img-fluid" 
+                    ? 'https://flowerworld-api.vercel.app' + item.image_url
+                    : item.image_url}" class="img-fluid" 
                                 style="width: 150px;" 
                                 alt="${item.flower_name || 'Product'}">
                         </div>
@@ -443,7 +442,7 @@
                     window.location.href = '/login.html';
                     return;
                 }
-                const cartResponse = await fetch('https://flower-world.vercel.app/orders/carts/', {
+                const cartResponse = await fetch('https://flowerworld-api.vercel.app/orders/carts/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Token ${token}`,
@@ -485,7 +484,7 @@
                     window.location.href = '/login.html';
                     return;
                 }
-                const cartResponse = await fetch('https://flower-world.vercel.app/orders/carts/', {
+                const cartResponse = await fetch('https://flowerworld-api.vercel.app/orders/carts/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Token ${token}`,
@@ -499,7 +498,7 @@
                 const cartData = await cartResponse.json();
                 if (Array.isArray(cartData) && cartData.length > 0) {
                     const cartId = cartData[0].id;
-                    const orderResponse = await fetch('https://flower-world.vercel.app/orders/orders/', {
+                    const orderResponse = await fetch('https://flowerworld-api.vercel.app/orders/orders/', {
                         method: 'POST',
                         headers: {
                             'Authorization': `Token ${token}`,

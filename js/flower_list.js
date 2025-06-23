@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiUrl = "https://flower-world.vercel.app/flowers/";
+    const apiUrl = "https://flowerworld-api.vercel.app/flowers/";
     const flowerContainer = document.getElementById("flower-container");
 
     async function loadAllFlowers() {

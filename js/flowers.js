@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiUrl = "https://flower-world.vercel.app/flowers/";
-    const categoryApiUrl = "https://flower-world.vercel.app/categories/";
-    const cartApiUrl = "https://flower-world.vercel.app/orders/carts/";
-    const ordersApiUrl = "https://flower-world.vercel.app/orders/orders/";
+    const apiUrl = "https://flowerworld-api.vercel.app/flowers/";
+    const categoryApiUrl = "https://flowerworld-api.vercel.app/categories/";
+    const cartApiUrl = "https://flowerworld-api.vercel.app/orders/carts/";
+    const ordersApiUrl = "https://flowerworld-api.vercel.app/orders/orders/";
 
     const flowerContainer = document.getElementById("flower-container");
     const categorySelect = document.getElementById("category-select");
