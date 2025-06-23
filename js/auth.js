@@ -45,7 +45,7 @@ const handleRegister = (event) => {
 
   console.log("Register Data: ", registerData);
 
-  fetch("https://flower-world.vercel.app/user/register/", {
+  fetch("https://flowerworld-api.vercel.app/user/register/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const handleLogin = (event) => {
   loginButton.disabled = true;
 
   // Login API call
-  fetch("https://flower-world.vercel.app/user/login/", {
+  fetch("https://flowerworld-api.vercel.app/user/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -126,7 +126,7 @@ const handleLogin = (event) => {
       localStorage.setItem("user_id", data.user_id);
 
       return fetch(
-        `https://flower-world.vercel.app/user/accounts/${data.user_id}/`,
+        `https://flowerworld-api.vercel.app/user/accounts/${data.user_id}/`,
         {
           method: "GET",
           headers: {
@@ -166,7 +166,7 @@ const handleLogout = () => {
     console.log("No token found in localStorage");
     return;
   }
-  fetch("https://flower-world.vercel.app/user/logout/", {
+  fetch("https://flowerworld-api.vercel.app/user/logout/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
