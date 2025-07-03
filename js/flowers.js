@@ -69,11 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
                                 ${flower.category?.name || "No Category"}
                             </div>
                         </div>
-                        <div class="p-4 border border-secondary border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
+                        <div class="p-4 border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
                             <h4>${flower.flower_name}</h4>
                             <p class="flex-grow-1">${flower.description.slice(0, 100)}...</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <p class="text-dark fs-5 fw-bold mb-0">$${flower.price}</p>
+                                <p class="text-dark fs-5 fw-bold mb-0">৳${flower.price}</p>
                                 <div>
                                     <button class="btn btn-sm px-3 py-1 more-info-btn" 
                                             onclick="location.href='flower_details.html?flowerId=${flower.id}'">

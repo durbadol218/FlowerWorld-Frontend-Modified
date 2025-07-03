@@ -64,7 +64,8 @@ const handleRegister = (event) => {
     .then((data) => {
       console.log("Response Data: ", data);
       successAlert.classList.remove("d-none");
-      successAlert.innerText = "Registration successful! Check your mail for activation link. Redirecting to login page...";
+      successAlert.innerText =
+        "Registration successful! Check your mail for activation link. Redirecting to login page...";
       setTimeout(() => {
         window.location.href = "login.html";
       }, 3000);
@@ -90,6 +91,8 @@ const handleLogin = (event) => {
     username: formData.get("username"),
     password: formData.get("password"),
   };
+
+  const rememberMe = document.getElementById("formCheck").checked;
 
   const successAlert = document.getElementById("login-alert-success");
   const errorAlert = document.getElementById("login-alert-error");
@@ -122,8 +125,15 @@ const handleLogin = (event) => {
       if (!data.token || !data.user_id) {
         throw new Error("Invalid login response from server");
       }
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user_id", data.user_id);
+
+      if (rememberMe) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user_id", data.user_id);
+      }
+      else{
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("user_id", data.user_id);
+      }
 
       return fetch(
         `https://flowerworld-api.vercel.app/user/accounts/${data.user_id}/`,
@@ -182,3 +192,73 @@ const handleLogout = () => {
     })
     .catch((err) => console.log("logout error:: ", err));
 };
+
+document
+  .getElementById("change-password-form")
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const newPassword = document.getElementById("new_password").value;
+    const confirmPassword = document.getElementById("confirm_password").value;
+    const successAlert = document.getElementById("change-password-success");
+    const errorAlert = document.getElementById("change-password-error");
+    const spinner = document.getElementById("change-password-spinner");
+    const changePasswordButton = document.querySelector(".btnChangePassword");
+
+    successAlert.classList.add("d-none");
+    errorAlert.classList.add("d-none");
+    spinner.classList.remove("d-none");
+    changePasswordButton.disabled = true;
+
+    if (newPassword !== confirmPassword) {
+      errorAlert.classList.remove("d-none");
+      errorAlert.innerText = "Passwords do not match.";
+      spinner.classList.add("d-none");
+      changePasswordButton.disabled = false;
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      errorAlert.classList.remove("d-none");
+      errorAlert.innerText = "User not authenticated.";
+      spinner.classList.add("d-none");
+      changePasswordButton.disabled = false;
+      return;
+    }
+
+    fetch(`https://flowerworld-api.vercel.app/user/change-password/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({
+        new_password: newPassword,
+        confirm_password: confirmPassword,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((data) => {
+            throw new Error(data.error || "Failed to change password");
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        successAlert.classList.remove("d-none");
+        successAlert.innerText = "Password changed successfully!";
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 3000);
+      })
+      .catch((error) => {
+        errorAlert.classList.remove("d-none");
+        errorAlert.innerText = error.message || "Failed to change password.";
+      })
+      .finally(() => {
+        spinner.classList.add("d-none");
+        changePasswordButton.disabled = false;
+      });
+  });

@@ -17,17 +17,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+        integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Header Section -->
     <header>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
                         <div class="container-fluid">
-                            <a class="navbar-brand me-auto" href="index.html">FlowerWorld</a>
+                            <a class="navbar-brand me-auto" href="./all_flowers.html">FlowerWorld</a>
                             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                                 aria-labelledby="offcanvasNavbarLabel">
                                 <div class="offcanvas-header">
@@ -108,12 +112,12 @@
         </div>
     </div>
 
-    <!-- Hero Start -->
+    <!-- Hero Section -->
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="d-flex align-items-center" style="background-color: #f5f5f5; height: 500px;">
-                    <div class="container my-5 py-5 px-3">
+                    <div class="container my-5 py-5 px-0">
                         <div class="row align-items-center">
                             <div class="col-md-6 px-5">
                                 <p class="text-success" style="font-size: 1.5rem;">Starting at $ <b>10.00</b></p>
@@ -132,7 +136,7 @@
 
             <div class="carousel-item">
                 <div class="d-flex align-items-center" style="background-color: #f5f5f5; height: 500px;">
-                    <div class="container my-5 py-5 px-3">
+                    <div class="container my-5 py-5 px-0">
                         <div class="row align-items-center">
                             <div class="col-md-6 px-5">
                                 <p class="text-success" style="font-size: 1.5rem;">Starting at $ <b>10.00</b></p>
@@ -217,7 +221,7 @@
 
 
     <!-- Flower Card -->
-    <div class="container my-4">
+    <div class="container my-4 mx-0">
         <div class="row align-items-center">
             <div class="col-12 col-md-6">
                 <h1 class="text-start">Our Fresh Flowers</h1>
@@ -280,33 +284,33 @@
 
 
     <!-- Fact Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5 px-0">
         <div class="container">
             <div class="bg-light p-5 rounded">
-                <div class="row g-4 justify-content-center">
+                <div class="row g-4 justify-content-center align-items-stretch">
                     <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
+                        <div class="counter bg-white rounded p-4 h-100 text-center shadow-sm">
                             <i class="fa fa-users text-secondary"></i>
                             <h4>satisfied customers</h4>
                             <h1>1963</h1>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
+                        <div class="counter bg-white rounded p-4 h-100 text-center shadow-sm">
                             <i class="fa fa-users text-secondary"></i>
                             <h4>quality of service</h4>
                             <h1>99%</h1>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
+                        <div class="counter bg-white rounded p-4 h-100 text-center shadow-sm">
                             <i class="fa fa-users text-secondary"></i>
                             <h4>quality certificates</h4>
                             <h1>33</h1>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
+                        <div class="counter bg-white rounded p-4 h-100 text-center shadow-sm">
                             <i class="fa fa-users text-secondary"></i>
                             <h4>Available Products</h4>
                             <h1>789</h1>
@@ -318,34 +322,142 @@
     </div>
     <!-- Fact Start -->
 
+    <!-- Blog section -->
+    <section class="py-5" id="blog">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="fw-semibold">Latest Blog & News</h1>
+                <p class="text-muted">Explore expert tips, seasonal guides, and floral inspiration from the FlowerWorld
+                    blog.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Blog Post 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card blog-post h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1526045478516-99145907023c" class="card-img-top"
+                                alt="Spring Flower Care" style="height: 250px; object-fit: cover;">
+                            <div
+                                class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 opacity-0 hover-opacity-100 transition">
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <small class="text-primary fw-semibold">Care Tips</small>
+                                <small class="text-muted">June 20, 2025</small>
+                            </div>
+                            <h5 class="card-title fw-semibold">
+                                <a href="#" class="text-dark text-decoration-none hover-text-success">Spring Care Guide
+                                    for Fresh Flowers</a>
+                            </h5>
+                            <p class="text-muted small">Keep your floral arrangements fresher longer with our expert
+                                spring care guide — perfect for tulips, daffodils, and roses.</p>
+                            <div class="d-flex align-items-center pt-3 border-top mt-3">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                    class="rounded-circle me-3" width="36" height="36" alt="">
+                                <small class="text-dark">Sophie Bloom</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card blog-post h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8" class="card-img-top"
+                                alt="Flower Gift Ideas" style="height: 250px; object-fit: cover;">
+                            <div
+                                class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 opacity-0 hover-opacity-100 transition">
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <small class="text-primary fw-semibold">Gifting</small>
+                                <small class="text-muted">June 14, 2025</small>
+                            </div>
+                            <h5 class="card-title fw-semibold">
+                                <a href="#" class="text-dark text-decoration-none hover-text-success">Top 5 Flower Gift
+                                    Ideas for Every Occasion</a>
+                            </h5>
+                            <p class="text-muted small">Not sure what to gift? Discover the perfect flower arrangements
+                                for birthdays, anniversaries, and just-because moments.</p>
+                            <div class="d-flex align-items-center pt-3 border-top mt-3">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                                    class="rounded-circle me-3" width="36" height="36" alt="">
+                                <small class="text-dark">Aarav Das</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card blog-post h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" class="card-img-top"
+                                alt="Floral Trends" style="height: 250px; object-fit: cover;">
+                            <div
+                                class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 opacity-0 hover-opacity-100 transition">
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <small class="text-primary fw-semibold">Trends</small>
+                                <small class="text-muted">May 30, 2025</small>
+                            </div>
+                            <h5 class="card-title fw-semibold">
+                                <a href="#" class="text-dark text-decoration-none hover-text-success">2025 Floral Trends
+                                    You Should Know</a>
+                            </h5>
+                            <p class="text-muted small">Discover the floral styles dominating 2025 — from wildflower
+                                bouquets to eco-conscious packaging trends.</p>
+                            <div class="d-flex align-items-center pt-3 border-top mt-3">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                    class="rounded-circle me-3" width="36" height="36" alt="">
+                                <small class="text-dark">Liam Hossain</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 
     <!-- Tastimonial Start -->
-    <div class="container-fluid testimonial py-5">
-        <div class="container py-5">
-            <div class="testimonial-header text-center">
-                <h4 style="color: #5CAF90;">Our Testimonial</h4>
-                <h1 class="display-5 mb-5 text-dark">Our Client Saying!</h1>
+    <div class="container-fluid testimonial py-5 bg-white px-0">
+        <div class="container py-5 px-0">
+            <div class="testimonial-header text-center mb-5">
+                <h4 style="color: #5CAF90;">Customer Reviews</h4>
+                <h1 class="fw-semibold">What Our Customers Are Saying</h1>
             </div>
+
             <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-item img-border-radius bg-light rounded p-4 shadow-sm">
                     <div class="position-relative">
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                             style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
                             <p class="mb-0">
-                                Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
+                                I ordered a birthday bouquet for my mom and she absolutely loved it! The flowers were
+                                fresh, beautifully arranged, and delivered on time. Highly recommend FlowerWorld for any
+                                occasion.
                             </p>
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="image/testimonial-1.jpg" class="img-fluid rounded"
-                                    style="width: 100px; height: 100px;" alt="">
+                            <div class="rounded overflow-hidden">
+                                <img src="image/testimonial-1.jpg" class="img-fluid"
+                                    style="width: 100px; height: 100px;" alt="Jen Martina">
                             </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Jen Martina</h4>
-                                <p class="m-0 pb-3">Pharmacist</p>
-                                <div class="d-flex pe-5">
+                            <div class="ms-4">
+                                <h4 class="text-dark mb-1">Jen Martina</h4>
+                                <p class="m-0 pb-2 text-muted">Pharmacist</p>
+                                <div class="d-flex">
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
@@ -356,25 +468,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-item img-border-radius bg-light rounded p-4 shadow-sm">
                     <div class="position-relative">
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                             style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
                             <p class="mb-0">
-                                Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
+                                I’ve used FlowerWorld multiple times and they never disappoint. The seasonal collections
+                                are always stunning and affordable. My patients love having fresh flowers in the clinic!
                             </p>
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="image/testimonial-1.jpg" class="img-fluid rounded"
-                                    style="width: 100px; height: 100px;" alt="">
+                            <div class="rounded overflow-hidden">
+                                <img src="image/woman1.jpg" class="img-fluid" style="width: 100px; height: 100px;"
+                                    alt="Ema Lee">
                             </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Ema Lee</h4>
-                                <p class="m-0 pb-3">Doctor</p>
-                                <div class="d-flex pe-5">
+                            <div class="ms-4">
+                                <h4 class="text-dark mb-1">Ema Lee</h4>
+                                <p class="m-0 pb-2 text-muted">Doctor</p>
+                                <div class="d-flex">
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
@@ -385,25 +499,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-item img-border-radius bg-light rounded p-4 shadow-sm">
                     <div class="position-relative">
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                             style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
                             <p class="mb-0">
-                                Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
+                                From weddings to corporate gifts, FlowerWorld has been our trusted florist. Their
+                                attention to detail, variety, and customer service is unmatched in the industry.
                             </p>
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="image/testimonial-1.jpg" class="img-fluid rounded"
-                                    style="width: 100px; height: 100px;" alt="">
+                            <div class="rounded overflow-hidden">
+                                <img src="image/woman2.jpg" class="img-fluid" style="width: 100px; height: 100px;"
+                                    alt="Sophie Bloom">
                             </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">John Stones</h4>
-                                <p class="m-0 pb-3">Businessman</p>
-                                <div class="d-flex pe-5">
+                            <div class="ms-4">
+                                <h4 class="text-dark mb-1">Sophie Bloom</h4>
+                                <p class="m-0 pb-2 text-muted">Businesswoman</p>
+                                <div class="d-flex">
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
                                     <i class="fas fa-star" style="color: #5CAF90;"></i>
@@ -418,6 +534,39 @@
         </div>
     </div>
     <!-- Tastimonial End -->
+
+
+    <!-- Newsletter Section -->
+    <!-- <section class="newsletter-section py-5 bg-light">
+        <div class="container text-center">
+            <h4 class="text-primary fw-semibold" style="color: #5CAF90;">Stay Connected</h4>
+            <h2 class="fw-bold text-dark mb-3 display-6">Join Our FlowerWorld Newsletter</h2>
+            <p class="text-muted mb-4 mx-auto" style="max-width: 600px;">
+                Be the first to know about fresh arrivals, exclusive discounts, and seasonal floral inspiration straight
+                to your inbox.
+            </p>
+
+            <form class="row justify-content-center" id="newsletter-form">
+                <div class="col-md-8 col-lg-6">
+                    <div class="input-group shadow-sm">
+                        <input type="email" class="form-control form-control-lg border-0" id="newsletter-email"
+                            placeholder="Enter your email address" required>
+                        <button class="btn btn-lg btn-success px-4" type="submit" style="background-color: #5CAF90;">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="newsletter-success" class="alert alert-success mt-3 d-none" role="alert">
+                ✅ Thank you for subscribing! You'll hear from us soon 🌸
+            </div>
+            <div id="newsletter-error" class="alert alert-danger mt-3 d-none" role="alert">
+                ⚠️ Please enter a valid email address.
+            </div>
+        </div>
+    </section> -->
+
 
 
     <!-- Footer -->
@@ -448,12 +597,9 @@
                             <h4 class="gi-footer-heading">Company</h4>
                             <hr>
                             <ul class="list-unstyled">
-                                <li><a href="about-us.html" class="footer-href">About us</a></li>
-                                <li><a href="orders.html" class="footer-href">Delivery</a></li>
-                                <li><a href="#" class="footer-href">Legal Notice</a></li>
-                                <li><a href="#" class="footer-href">Terms & Conditions</a></li>
-                                <li><a href="#" class="footer-href">Secure payment</a></li>
-                                <li><a href="contact.html" class="footer-href">Contact us</a></li>
+                                <li><a href="./about.html" class="footer-href">About us</a></li>
+                                <li><a href="./orders.html" class="footer-href">Delivery</a></li>
+                                <li><a href="./contact.html" class="footer-href">Contact us</a></li>
                             </ul>
                         </div>
 
@@ -465,9 +611,7 @@
                                 <li><a href="login.html" class="footer-href">Sign In</a></li>
                                 <li><a href="register.html" class="footer-href">Sign Up</a></li>
                                 <li><a href="orders.html" class="footer-href">View Orders</a></li>
-                                <li><a href="#" class="footer-href">Return Policy</a></li>
-                                <li><a href="#" class="footer-href">Affiliate Program</a></li>
-                                <li><a href="#" class="footer-href">Payments</a></li>
+                                <!-- <li><a href="#" class="footer-href">Payments</a></li> -->
                             </ul>
                         </div>
 
@@ -478,14 +622,16 @@
                                 <li><i class="fas fa-map-marker-alt"></i> Rangpur, Dhaka, Bangladesh.</li>
                                 <li><i class="fas fa-phone-alt"></i> <a href="tel:+8801759381907"
                                         class="footer-href">01759381907</a></li>
-                                <li><i class="fas fa-envelope"></i> <a href="mailto:example@email.com"
-                                        class="footer-href">example@email.com</a></li>
+                                <li><i class="fas fa-envelope"></i> <a href="mailto:goswamidurbadol@email.com"
+                                        class="footer-href">goswamidurbadol@email.com</a></li>
                             </ul>
                             <div class="gi-footer-social">
-                                <a href="#" class="me-2 footer-href"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="me-2 footer-href"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="me-2 footer-href"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" class="footer-href"><i class="fab fa-instagram"></i></a>
+                                <a href="https://facebook.com/durbadol-goswami" class="me-2 footer-href"><i
+                                        class="fab fa-facebook"></i></a>
+                                <a href="https://www.linkedin.com/in/durbadolgoswamikabbo" class="me-2 footer-href"><i
+                                        class="fab fa-linkedin"></i></a>
+                                <a href="https://www.instagram.com/durbadol_22/" class="footer-href"><i
+                                        class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
