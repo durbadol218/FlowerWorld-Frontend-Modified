@@ -126,14 +126,14 @@ const handleLogin = (event) => {
         throw new Error("Invalid login response from server");
       }
 
-      if (rememberMe) {
+      // if (rememberMe) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user_id", data.user_id);
-      }
-      else{
-        sessionStorage.setItem("token", data.token);
-        sessionStorage.setItem("user_id", data.user_id);
-      }
+      // }
+      // else{
+      //   sessionStorage.setItem("token", data.token);
+      //   sessionStorage.setItem("user_id", data.user_id);
+      // }
 
       return fetch(
         `https://flowerworld-api.vercel.app/user/accounts/${data.user_id}/`,

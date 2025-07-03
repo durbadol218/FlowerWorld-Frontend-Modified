@@ -320,6 +320,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     loadCategories();
     loadFlowers();
-    if (ordersContainer) loadOrders();
+    if (ordersContainer) {
+        loadOrders();
+    }
     window.showFlowerDetails = showFlowerDetails;
 });
