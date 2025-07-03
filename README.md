@@ -10,6 +10,11 @@ FlowerWorld is designed to provide a smooth floral shopping experience with mode
 
 ---
 
+## 🚀 Live Demo
+
+Frontend: [https://flower-world.vercel.app](https://flower-world.vercel.app)  
+Backend API: [https://flowerworld.onrender.com](https://flowerworld.onrender.com)
+
 ## 🚀 Core Features
 
 ### 👤 User Side:
@@ -33,18 +38,40 @@ FlowerWorld is designed to provide a smooth floral shopping experience with mode
 
 ---
 
-## 🧑‍💻 Technologies Used
+## 🖼️ Screens & Pages
 
-### 👨‍🏫 Frontend
-- **HTML5**, **CSS3**, **JavaScript (ES6)**
-- **Bootstrap 5**
-- **Owl Carousel**, **FontAwesome**, **Google Fonts**
+### Frontend Pages:
+- `index.html` – Home
+- `register.html` / `login.html` – Authentication
+- `all_flowers.html` – Flower listings with category filter
+- `flower_details.html` – Product detail view
+- `cart.html` / `checkout.html` – Cart and Checkout process
+- `order_confirmation.html` / `payment_success.html` / `payment_failed.html` – Payment responses
+- `profile.html` / `update-profile.html` / `change-password.html` – User profile pages
+- `admin/*.html` – Admin views and controls
+- `testimonial.html` – Testimonials
+- `about.html`, `contact.html` – Informational pages
+- `newsletter` section in homepage
 
-### 🖥 Backend (API)
-- **Django** + **Django REST Framework**
-- **JWT Authentication**
-- **SMTP Email Handling (via `EmailMultiAlternatives`)**
-- **Model-based User Roles (`UserAccount` with `account_type`)**
+---
+
+## 🧪 Technologies Used
+
+### 💻 Frontend:
+- HTML5, CSS3
+- JavaScript (Vanilla)
+- Bootstrap 5
+- Tailwind CSS (partially)
+- Owl Carousel for testimonials
+
+### 🖥️ Backend:
+- Python 3
+- Django 4.x
+- Django REST Framework (DRF)
+- SQLite (default, can be switched to PostgreSQL/MySQL)
+- Django Email Utilities for notifications
+
+---
 
 ### 📦 Other Tools
 - **PostgreSQL** (or SQLite)
@@ -54,37 +81,56 @@ FlowerWorld is designed to provide a smooth floral shopping experience with mode
 
 ---
 
-## 📁 Project Structure
+## 📁 Folder Structure
 
-```
-flowerworld/
-├── backend/
-│   ├── api/
-│   ├── users/
-│   ├── flowers/
-│   ├── orders/
-│   └── templates/
-├── frontend/
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── admin/
-│   └── assets/
-└── README.md
-```
+### Frontend (`FlowerWorld Modified FE/`)
+📁 image/
+📁 css/
+📁 js/
+📁 admin/
+📄 index.html
+📄 register.html
+📄 login.html
+📄 profile.html
+📄 flower_details.html
+
+### Backend (`FlowerWorld/`)
+📁 FlowerWorld/ # Django settings
+📁 flowers/ # Flower model, views, serializers
+📁 order/ # Order model & logic
+📁 user/ # Custom user model & auth
+📁 payment/ # Payment success/failure pages
+📄 manage.py
+📄 requirements.txt
+📄 db.sqlite3
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ API Endpoints
 
-### ▶️ Backend Setup
+- `POST /user/register/` — Register new user
+- `POST /user/login/` — Login
+- `GET /flowers/` — Get all flowers
+- `GET /flowers/category/<id>/` — Filter flowers by category
+- `POST /orders/` — Place order
+- `GET /orders/<user_id>/` — Get user order history
+- `PATCH /orders/<id>/status/` — Update order status (admin)
+- `GET /user/profile/<user_id>/` — Get user profile
+
+---
+
+## ✅ How to Run Locally
+
+### Backend Setup
 ```bash
 git clone https://github.com/durbadol218/FlowerWorld-New
-cd flowerworld/backend
+cd FlowerWorld
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-```
+
 
 ### ▶️ Frontend Setup
 Just open `index.html` in your browser or deploy to [Vercel](https://vercel.com).
@@ -106,8 +152,6 @@ Just open `index.html` in your browser or deploy to [Vercel](https://vercel.com)
 
 ## 🖼 Screenshots
 
-> *(Replace these with actual images)*
-
 | Home Page | Order Page | Admin Dashboard |
 |-----------|------------|------------------|
 | ![Home](screenshots/flowerWorld_frontend_home.png) | ![Order](screenshots/flowerWorld_frontend_orders.png) | ![Admin](screenshots/flowerWorld_frontend_admin_home.png) |
@@ -122,11 +166,6 @@ Just open `index.html` in your browser or deploy to [Vercel](https://vercel.com)
 🔗 GitHub: https://github.com/durbadol218
 
 ---
-
-
-
-Backend Link: https://flowerworld-api.vercel.app/
-Fronted Link: https://flower-world-modified.vercel.app/
 
 
 ## 📃 License
