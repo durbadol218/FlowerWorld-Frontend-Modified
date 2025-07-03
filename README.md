@@ -110,7 +110,7 @@ Just open `index.html` in your browser or deploy to [Vercel](https://vercel.com)
 
 | Home Page | Order Page | Admin Dashboard |
 |-----------|------------|------------------|
-| ![Home](screenshots/home.png) | ![Order](screenshots/order.png) | ![Admin](screenshots/admin.png) |
+| ![Home](screenshots/flowerWorld_frontend_home.png) | ![Order](screenshots/flowerWorld_frontend_orders.png) | ![Admin](screenshots/flowerWorld_frontend_admin_home.png) |
 
 ---
 
