@@ -92,7 +92,7 @@ const handleLogin = (event) => {
     password: formData.get("password"),
   };
 
-  const rememberMe = document.getElementById("formCheck").checked;
+  // const rememberMe = document.getElementById("formCheck").checked;
 
   const successAlert = document.getElementById("login-alert-success");
   const errorAlert = document.getElementById("login-alert-error");
