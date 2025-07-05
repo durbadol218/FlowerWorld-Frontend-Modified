@@ -1,4 +1,3 @@
-
 # 🌸 FlowerWorld
 
 **FlowerWorld** is a full-featured eCommerce web application where users can browse and purchase flowers, and administrators can manage orders and product listings. It supports user authentication, order management, category filtering, dynamic user dashboards, and email notifications.
